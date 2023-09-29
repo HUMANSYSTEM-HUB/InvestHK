@@ -2,345 +2,113 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://i.ibb.co/PTcH9jG/Imagen1.png">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <script src="https://js.stripe.com/v3/"></script>
+    <title>Contrato de Activos Digitales</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-    <!-- CSS propio -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" type="text/css" href="estilos.css">
-<!-- SweetAlert2 CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.17/dist/sweetalert2.min.css">
-
-<!-- Font Awesome CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<!-- SweetAlert2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.17/dist/sweetalert2.min.js"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
-  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-    <title>Sistema de Identificación Humana</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
 
-<!-- Titulo -->
-
-    <div class="logo-container">
-        <div class="logo-top">
-            <div class="text-right" style="background-color: white; display: flex; align-items: center; justify-content: flex-end;">
-                <img src="https://i.ibb.co/f4vZNKd/Captura-de-pantalla-2023-04-29-201016.png" width="80" height="80" alt="Logo1" class="logo" style="margin-right: 5px;">
-                <div>
-                  <h5 style="color: #2c758c; margin-right: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" id="line1"></h5>
-                  <h5 style="color: #F17460; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" id="line2"></h5>
-                </div>
-              </div>
-              
-              
-        </div>
-        <div class="logo-middle">
-          <h1 class="text-right mt-4" style="color: #2c758c; font-family: 'Orbitron', sans-serif;" id="line3"></h1>
-        </div>
-        <div class="logo-bottom">
-          <h6 class="text-right mt-4" style="color: #F17460; font-family: 'Orbitron', sans-serif;" id="line4"></h6>
-        </div>
-      </div>
-      
-      <script>
-        const text1 = "人类";
-        const text2 = "系统";
-        const text3 = "始终为改善您的生活而准备好。";
-        const text4 = "每一秒钟";
-      
-        let i = 0;
-        let j = 0;
-        let k = 0;
-        let l = 0;
-      
-        function typeWriter1() {
-          if (i < text1.length) {
-            document.getElementById("line1").innerHTML += text1.charAt(i);
-            i++;
-            setTimeout(typeWriter1, Math.floor(Math.random() * 150) + 50);
-          }
-        }
-      
-        function typeWriter2() {
-          if (j < text2.length) {
-            document.getElementById("line2").innerHTML += text2.charAt(j);
-            j++;
-            setTimeout(typeWriter2, Math.floor(Math.random() * 150) + 50);
-          }
-        }
-      
-        function typeWriter3() {
-          if (k < text3.length) {
-            document.getElementById("line3").innerHTML += text3.charAt(k);
-            k++;
-            setTimeout(typeWriter3, Math.floor(Math.random() * 150) + 50);
-          }
-        }
-      
-        function typeWriter4() {
-          if (l < text4.length) {
-            document.getElementById("line4").innerHTML += text4.charAt(l);
-            l++;
-            setTimeout(typeWriter4, Math.floor(Math.random() * 150) + 50);
-          }
-        }
-      
-        typeWriter1();
-        setTimeout(typeWriter2, text1.length * (Math.floor(Math.random() * 150) + 50) + 1000);
-        setTimeout(typeWriter3, (text1.length + text2.length) * (Math.floor(Math.random() * 150) + 50) + 2000);
-        setTimeout(typeWriter4, (text1.length + text2.length + text3.length) * (Math.floor(Math.random() * 150) + 50) + 3000);
-      </script>
-</div>      
-      
-
-<!-- Nav--> 
-<nav class="navbar navbar-expand-lg rounded-lg navbar-dark sticky-top mb-3 ml-2 mr-2 " style="background-color: whitesmoke">
-    <a class="" href="#">
-    <img class="align-items-center" src="https://i.ibb.co/f4vZNKd/Captura-de-pantalla-2023-04-29-201016.png"  width="60" height="60" alt="Logo">		
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto align-items-center">
-      <li class="nav-item">
-        <a id="carousel-button" class="nav-link" style="color: #2c758c; font-size: 25px;" href="#"><i class="fa fa-file-media"></i></a>
-      </li>
-      
-      <script>
-        // Obtenemos el botón por su ID
-        const carouselButton = document.getElementById('carousel-button');
-      
-        // Agregamos un event listener al botón
-        carouselButton.addEventListener('click', function() {
-          // Definimos las imágenes que se mostrarán
-          const images = [
-            'https://i.ibb.co/58CNGrf/Home.png',
-            'https://i.ibb.co/qxgXBY1/About.png',
-
-            'https://i.ibb.co/ySmz0nN/Services.png',
-            'https://i.ibb.co/g69RT8x/5.png',
-            'https://i.ibb.co/9ZrSXYy/6.png',
-            'https://i.ibb.co/n0GCxvK/7.png',
-            'https://i.ibb.co/5kS5m5r/8.png'
-
-            // Agrega más imágenes si lo deseas
-          ];
-      
-          // Creamos un array de objetos con la estructura requerida por SweetAlert2
-          const carouselItems = images.map(image => ({ src: image }));
-      
-          // Construimos el HTML para mostrar las imágenes
-          const imagesHtml = carouselItems.map(item => `<img src="${item.src}" style="width: 100%; height: auto; object-fit: contain;">`).join('');
-      
-          // Mostramos la ventana emergente con las imágenes
-          Swal.fire({
-            title: 'Información',
-            icon: 'question',
-            html: imagesHtml,
-       showConfirmButton: true,
-      showCancelButton: true,
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-      focusCancel: true,
-      customClass: {
-        confirmButton: 'swal-button',
-        cancelButton: 'swal-button'
-      },
-          });
-        });
-      </script>
-       </ul>
-  </nav>
-    </div>
-
-
-<!-- Formulario de validacion --> 
-<div id="Validacion" class="text-center pl-2 pr-2" style="background-color: white">
-  <div class="col col-md text-white p-3  rounded-lg " style="background-color: #2C758C">
-  <div class="pb-1">
-    <h2 class="mb-3" ><i class="mr-3 fas fa-chart-line"></i>Invest Hong Kong</h2>
-  </div>
-    <div class="col col-md text-white p-3 mb-2  rounded-lg " style="background-color: #f87d6a">
-      <div class="text-white p-4  rounded-lg" style="background-color: #e8dddd54">
-        <h6 class="mb-3 fw-normal">IA - Fabian Genetics</h6>
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe allow="autoplay;" allowfullscreen style="border:none" src="https://www.youtube.com/embed/ikGd8v9Y7_E" width="640" height="360"></iframe>
-        </div>
-      </div>
-    </div>
-
-  <form action="verification" method="POST">
-  <div class="text-white p-4  rounded-lg" style="background-color: rgba(245, 245, 245, 0.313)">
-  <h5 class="fw-normal" style="text-align: justify;">Dear Laura Jiang,</h5><br>
-  <div class="mb-5 fw-normal">
-  <p style="text-align: justify; size: 40px;">I hope this message finds you well. First and foremost, I want to express my sincere gratitude for your email and the genuine interest you've shown in my project. It's heartening to know that InvestHK's services are free and that they are willing to provide support.
-     <br>
-    <br> I am greatly pleased with the opportunity to explore how our collaboration could shape this project and take it to new heights. I am eager to discuss further details and explore how your organization and my project can work together.
-  <br>
-  <br>Your proposal for a call to exchange additional information is highly valuable to me. While we are in different time zones, I want to assure you that I am willing to adjust my availability for this important dialogue. You can contact me directly through my personal mobile number: 4777035558.
-    <br>
-  <br>Allow me to take this opportunity to share a bit more about the nature of my project. Currently, we are seeking to implement a technology based on human identification. This technology focuses on storing encrypted data in a database hosted in Hong Kong. As part of our focus on innovation, we are interested in developing an application using machine learning language, similar to the technology employed by GPT. Furthermore, we intend to host and manage the platform on a Chinese service cloud.
-   <br>
-  <br>These are just the initial steps of an ambitious project, and I highly value the opportunity to have the support and expertise of InvestHK on this journey. I am eagerly looking forward to the possibility of discussing this project in greater depth and exploring how we can collaborate to achieve significant impact.  
-  <br>
-  <br>I appreciate your time and attention once again, and I am eager to hear from you. I look forward to your call to advance in this exciting collaboration opportunity.
-    <br>
-  <br>Best regards,
-  <br>
-    <br>
-    CEO de Human System.
-    <br>	 
-    Sergio Campos Medina
-  </p>
-        </div>
-
-
-  <form id="formulario" action="verification" method="POST">
-    <div class="text-white p-4 rounded-lg" style="background-color: whitesmoke">
-      <div class="form-check ">
-        <input class="form-check-input" type="checkbox" id="gridCheck" onchange="habilitarBotones()">
-        <label class="form-check-label" for="gridCheck" style="color:#2d7990">
-      <p>	 The following option enables the visualization and download of an electronic document.</p>
-        </label>
-      </div>
-      <h5 class="mb-3 fw-normal" style="color:#2c758c">Would you like to view the electronic document for subsequent download?</h5>
-      <button id="btnAceptar" type="button" class="btn btn-success mr-3" disabled><i class="mr-2 fas fa-eye"></i>Yes</button>
-      <button id="btnDeclinar" type="button" class="btn btn-danger" disabled><i class="mr-2 fas fa-times"></i>No</button>
-    </div>
-  </form>
-  
-  <script>
-    function habilitarBotones() {
-      var checkbox = document.getElementById('gridCheck');
-      var btnAceptar = document.getElementById('btnAceptar');
-      var btnDeclinar = document.getElementById('btnDeclinar');
-      
-      if (checkbox.checked) {
-        btnAceptar.disabled = false;
-        btnDeclinar.disabled = false;
-      } else {
-        btnAceptar.disabled = true;
-        btnDeclinar.disabled = true;
-      }
-    }
-  </script>
-  
-        </div>
-        </div>
-        </div>
-
+<div id="content" style="display:none;">
+    <form id="contractForm">
+        <label for="humanIdSender">ID de Humano (Vendedor):</label>
+        <input type="text" id="humanIdSender" name="humanIdSender" required><br><br>
+        <label for="humanIdReceiver">ID de Humano (Comprador):</label>
+        <input type="text" id="humanIdReceiver" name="humanIdReceiver" required><br><br>
+        <div id="assetsContainer"></div>
+        <button type="button" onclick="addAssetField()">Añadir Activo Digital</button><br><br>
+        <input type="submit" value="Generar Contrato">
+    </form>
 </div>
 
-
-
-
-<!-- Pie de pagina -->
-
-<div style="color: #2d7990; background-color: white; text-align: center;" class="mt-3">
-<a class="" href="#">
-<img class="" src="https://i.ibb.co/J2kzm55/H-S-Logo.png" width="80" height="80" alt="Logo">		
-</a>
-<p class="m-0 p-4">Autor Sergio Campos Medina.<br>
-Registro: No.03-2022-050214132600-01 
-<br> Patente: MX/a/2023/001585.</p>
-</div>
-
-
-<!-- Scripts -->
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <!-- Scrollreveal -->
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="assets/js/scrollReveal.js"></script>
-    <!-- Dependencias de bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
-    crossorigin="anonymous"></script> 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-const swalWithBootstrapButtons = Swal.mixin({
-  customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
-  },
-  buttonsStyling: false
-});
-document.getElementById('btnAceptar').addEventListener('click', function() {
-swalWithBootstrapButtons.fire({
-  title: 'Accepted the view!',
-  text: 'Press the button to download the document.',
-  icon: 'success',
-  imageUrl: 'https://i.ibb.co/mcYD5QN/Negro-Simple-Profesional-Carta-de-Renuncia-1.png',
-  imageWidth: 900,
-  imageHeight: 1000,
-  imageAlt: 'Imagen personalizada',
-  confirmButtonText: 'Download',
-  customClass: {
-    confirmButton: 'btn btn-success'
-  }
-}).then((result) => {
-  if (result.isConfirmed) {
-    // Crea un enlace temporal y simula un clic para descargar el documento
-    const link = document.createElement('a');
-    link.href = 'Archivos/InvestHK.pdf'; // Ruta del documento
-    link.download = 'InvestHK.pdf'; // Nombre del archivo
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-});
-});
-    
-    // Evento para el botón "Declinar" del formulario
-    document.getElementById('btnDeclinar').addEventListener('click', function() {
-      // Muestra un SweetAlert con mensaje de error
-      swalWithBootstrapButtons.fire({
-      title: 'You declined the download!',
-      text: 'You have declined the download.',
-      icon: 'error',
-      showCancelButton: false,
-      confirmButtonText: 'Accepted.',
-      customClass: {
-        confirmButton: 'btn btn-danger'
-      }
-      }).then((result) => {
-      // Envía el formulario si se hace clic en "Aceptar" en el SweetAlert
-      if (result.isConfirmed) {
-        document.getElementById('formulario').submit();
-      }
-      });
+<script>
+window.onload = function() {
+    Swal.fire({
+        title: 'Ingrese Usuario y Contraseña',
+        html:
+            '<input id="swal-input1" class="swal2-input" placeholder="Usuario">' +
+            '<input id="swal-input2" class="swal2-input" placeholder="Contraseña" type="password">',
+        focusConfirm: false,
+        preConfirm: () => {
+            return [
+                document.getElementById('swal-input1').value,
+                document.getElementById('swal-input2').value
+            ]
+        }
+    }).then((result) => {
+        if (result.value[0] === 'hashkey' && result.value[1] === 'human_xchange') {
+            document.getElementById('content').style.display = 'block';
+        } else {
+            Swal.fire('Error', 'Usuario o Contraseña Incorrectos', 'error');
+        }
     });
-  });
-    </script>
-    
+};
 
-</div>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
-  
-  h1,h2,h3,h4,h5,h6,p{
-    font-family: 'Orbitron', sans-serif;
-  }
-</style>
+function addAssetField() {
+    const container = document.getElementById('assetsContainer');
+    const div = document.createElement('div');
+    div.innerHTML = '<label for="assetId">ID del Activo:</label>' +
+                    '<input type="text" name="assetId" required><br>' +
+                    '<label for="assetPrice">Precio del Activo:</label>' +
+                    '<input type="number" name="assetPrice" required><br><br>';
+    container.appendChild(div);
+}
+
+
+document.getElementById('contractForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const humanIdSender = document.getElementById('humanIdSender').value;
+    const humanIdReceiver = document.getElementById('humanIdReceiver').value;
+    const tokenUnico = 'TokenUnico1234'; // Este debería ser generado de forma única para cada contrato
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.text('CONTRATO DE COMPRA DE ACTIVOS DIGITALES', 20, 30);
+    doc.text(`ID de Humano (Vendedor): ${humanIdSender}`, 20, 40);
+    doc.text(`ID de Humano (Comprador): ${humanIdReceiver}`, 20, 50);
+    doc.text(`Token Único por Contrato: ${tokenUnico}`, 20, 60);
+
+    const assetsContainer = document.getElementById('assetsContainer');
+    const assetDivs = assetsContainer.getElementsByTagName('div');
+    let yOffset = 70;
+    
+    for (const assetDiv of assetDivs) {
+        const assetIdInput = assetDiv.querySelector('input[name="assetId"]');
+        const assetPriceInput = assetDiv.querySelector('input[name="assetPrice"]');
+        
+        const assetId = assetIdInput ? assetIdInput.value : '';
+        const assetPrice = assetPriceInput ? assetPriceInput.value : '';
+        
+        doc.text(`ID del Activo: ${assetId}`, 20, yOffset);
+        yOffset += 10;
+        doc.text(`Precio del Activo: ${assetPrice}`, 20, yOffset);
+        yOffset += 10;
+    }
+
+    const qrDiv = document.createElement('div');
+    document.body.appendChild(qrDiv);
+    new QRCode(qrDiv, { text: tokenUnico, width: 128, height: 128 });
+
+    html2canvas(qrDiv).then((canvas) => {
+    const dataURL = canvas.toDataURL('image/png');
+    const qrSize = 30;
+    const qrPositionX = 20;
+    const qrPositionY = doc.internal.pageSize.getHeight() - qrSize - 30; // Ajustar posición en Y
+    
+    doc.addImage(dataURL, 'PNG', qrPositionX, qrPositionY, qrSize, qrSize); // Asegurar dimensiones cuadradas
+    
+    document.body.removeChild(qrDiv);
+    
+    doc.save('contrato.pdf');
+    Swal.fire('Contrato Generado', 'El contrato ha sido generado y descargado.', 'success');
+});
+});
+</script>
+
+</body>
+</html>
 
 </body>
 </html>
