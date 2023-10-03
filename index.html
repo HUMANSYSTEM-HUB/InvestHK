@@ -17,77 +17,52 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Agregar el enlace al script de FullCalendar -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-
+    
     <title>Inicio</title>
   </head>
   
 <!-- Body -->  
 <body>   
-
+ <div id="content" style="display:none;">
 <!-- Nav -->
 <div id="Navbar" class="text-center sticky-top pl-2 mt-2 pr-2" style="background-color: white;">
   <nav class="navbar navbar-expand-lg sticky-top  rounded-lg" style="background-color: whitesmoke;">
     <img class="align-items-center background-color:white rounded-lg" src="https://i.ibb.co/f4vZNKd/Captura-de-pantalla-2023-04-29-201016.png"  width="60" height="60" alt="Logo">
-    <style>
-      .search-container {
-          position: relative;
-      }
-  
-      #suggestions {
-          display: none; /* Inicialmente oculto */
-          position: absolute; /* Posición absoluta respecto al div padre */
-          top: 100%; /* Alineado justo debajo del input */
-          left: 0;
-          right: 0;
-          z-index: 1000; /* Estar por encima de otros elementos */
-          width: 100%; /* Ajustarse al tamaño del div padre */
-      }
-  </style>
-  
-  <div class="search-container">
-      <div class="ml-2 input-group">
-          <input type="text" id="search-input" class="form-control" placeholder="Buscar . . .">
-          <div class="input-group-append">
-              <button id="search-btn" class="btn btn-info" type="button"><i class="fas fa-dna"></i></button>
-          </div>
-      </div>
-  
-      <div id="suggestions" style="background-color: white;">
-          <div class="text-white pt-2 pr-2 pl-2 rounded-lg" ALIGN="left" style="background-color: whitesmoke">
-                
-          </div>
-      </div>
-  </div>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-  <script>
-      const button = document.querySelector('#search-btn');
-      const suggestions = document.querySelector('#suggestions');
-  
-      button.addEventListener('click', async () => {
-          const query = document.getElementById('search-input').value;
-  
-          try {
-              const response = await axios.post('/get-response', { message: query });
-              const modelResponse = response.data.message;
-  
-              // Actualizar el contenido de la publicación/sugerencia basada en la respuesta
-              suggestions.querySelector('.text-white').innerHTML = modelResponse;
-  
-              // Mostrar el div de sugerencia
-              suggestions.style.display = 'block';
-          } catch (error) {
-              console.error(error);
-              Swal.fire({
-                  icon: 'error',
-                  title: 'Oops...',
-                  text: 'An error occurred while getting the response from the model.',
-              });
-          }
-      });
-  </script>
-  
+            <div class="ml-2 input-group">
+            <input type="text" class="form-control" placeholder="Buscar . . .">
+            <div class="input-group-append">
+              <button class="btn btn-info" type="submit"><i class="fas fa-dna"></i></button>
+            </div>
+           </div>
+         <!-- En el lugar donde quieras colocar tu botón -->
+<button id="myButton" class="navbar-toggler" type="button">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<script>
+// Obtén el elemento del botón
+const button = document.querySelector('#myButton');
+
+// Agrega un event listener para el clic
+button.addEventListener('click', () => {
+  // Muestra el cuadro de alerta SweetAlert con un input y dos botones
+  Swal.fire({
+    title: 'Ingresa algo',
+    input: 'text', // Tipo de input
+    inputPlaceholder: 'Escribe aquí', // Placeholder del input
+    showCancelButton: true, // Muestra el botón de cancelar
+    confirmButtonColor: '#28a745', // Color del botón confirmar (verde)
+    cancelButtonColor: '#d33', // Color del botón cancelar (rojo)
+    confirmButtonText: 'Sí', // Texto del botón confirmar
+    cancelButtonText: 'No', // Texto del botón cancelar
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Acción cuando se presiona el botón confirmar (Sí)
+      Swal.fire('Ingresaste: ' + result.value);
+    }
+  });
+});
+</script>
 
  
   <div class="collapse navbar-collapse" id="navbarNav">
@@ -642,31 +617,34 @@
             <div class="col col-md text-white p-2 mb-3 rounded-lg" style="background-color:  #fcc404">
   
               <h4 class="mt-2" style="color:#0463cb;">Empresas <i class="ml-1 fa fa-building"></i></h4>
-              <button id="addCompanyBtn" class="btn btn-outline-light mb-2"><i class="fas fa-building mr-2"></i>Añadir Empresa</button>
-    <script>
-        document.getElementById('addCompanyBtn').addEventListener('click', function() {
-            Swal.fire({
-                title: 'Añadir Empresa',
-                html:
-                    '<input id="swal-input1" class="swal2-input" placeholder="Título de la empresa...">' +
-                    '<input id="swal-input2" class="swal2-input" placeholder="Descripción de la empresa...">' +
-                    '<input id="swal-input3" class="swal2-input" placeholder="Link de la empresa...">',
-                focusConfirm: false,
-                preConfirm: () => {
-                    return [
-                        document.getElementById('swal-input1').value,
-                        document.getElementById('swal-input2').value,
-                        document.getElementById('swal-input3').value
-                    ]
-                }
-            }).then((result) => {
-                if (result.value) {
-                    const [title, description, link] = result.value
-                    // Aquí puedes manejar los valores ingresados, por ejemplo, enviarlos a tu servidor o realizar alguna otra acción
-                }
-            });
-        });
-    </script>
+              <button id="createCompanyBtn" class="btn btn-outline-light mb-2"><i class="fas fa-building mr-2"></i>Crear Empresa</button>
+              <script>
+                document.getElementById('createCompanyBtn').addEventListener('click', function() {
+                    Swal.fire({
+                        title: 'Crear Empresa',
+                        html:
+                            '<input id="swal-input1" class="swal2-input" placeholder="Buscar amigo...">' +
+                            '<input id="swal-input2" class="swal2-input" placeholder="% por amigo..." type="number">' +
+                            '<input id="swal-input3" class="swal2-input" placeholder="Título de la empresa...">' +
+                            '<input id="swal-input4" class="swal2-input" placeholder="Descripción de la empresa...">',
+                        focusConfirm: false,
+                        preConfirm: () => {
+                            return [
+                                document.getElementById('swal-input1').value,
+                                document.getElementById('swal-input2').value,
+                                document.getElementById('swal-input3').value,
+                                document.getElementById('swal-input4').value
+                            ]
+                        }
+                    }).then((result) => {
+                        if (result.value) {
+                            const [friend, percentage, title, description] = result.value
+                            // Aquí puedes manejar los valores ingresados, por ejemplo, enviarlos a tu servidor o realizar alguna otra acción
+                        }
+                    });
+                });
+                </script>
+                
               <form action="#" method="GET" class="mb-3">
                
                 <div class="input-group">
@@ -679,8 +657,8 @@
               <div class="row">
                   <div class="col-md-4">
                       <div class="list-group" id="lista-empresas" role="tablist">
-                          <a class="list-group-item list-group-item-action active btn-outline-light" data-toggle="list" href="#empresa1" role="tab">JuiceLab</a>
-                          <a class="list-group-item list-group-item-action btn-outline-light" data-toggle="list" href="#empresa2" role="tab">Human Genetics</a>
+                          <a class="list-group-item list-group-item-action active btn-outline-light" data-toggle="list" href="#empresa1" role="tab">Winac</a>
+                          <a class="list-group-item list-group-item-action btn-outline-light" data-toggle="list" href="#empresa2" role="tab">Human Genetic</a>
                           <a class="list-group-item list-group-item-action btn-outline-light" data-toggle="list" href="#empresa3" role="tab">Político Intelectual</a>
                       </div>
                   </div>  
@@ -688,29 +666,50 @@
                       <div class="tab-content" id="contenido-empresas">
                           <div class="tab-pane fade show active" id="empresa1" role="tabpanel">
                               <div class="empresa-container">
-                                  <div class="empresa-info" style="color:#0463cb;">
+                                  <div class="empresa-info">
                                     <img src="Logo1.jpg" alt="Logo 1" class="mb-2 img-fluid rounded-circle">
-                                       <i class="fas fa-glass-whiskey"></i>   <h6>JuiceLab</h6>    
-                                      <small><p>Empresa mexicana líder en la producción y distribución de jugos frescos, con presencia destacada en todo México.</p></small>
-                                                                 </div>
+                                      <div class="empresa-info-content" style="color:#0463cb;">
+                                          <p>Ingresos: $100,000 <i class="far fa-smile"></i>
+                                      </div>
+                                      <div class="empresa-info-content" style="color:#0463cb;">
+                                        <p> Gastos: $75,000 <i class="far fa-meh"></i>
+                                      </div>
+                                      <div class="empresa-info-content" style="color:#0463cb;">
+                                        <p> Capital: $25,000 <i class="far fa-frown"></i>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
                           <div class="tab-pane fade" id="empresa2" role="tabpanel">
                               <div class="empresa-container">
-                                <div class="empresa-info" style="color:#0463cb;">
-                                  <img src="Logo2.jpg" alt="Logo2" class="mb-2 img-fluid rounded-circle">
-                                  <i class="fas fa-dna"></i>   <h6>Human Genetics</h6>    
-                                  <small><p>Empresa mexicana líder en investigación y análisis genéticos, innovando en el campo de la biotecnología en todo México.</p></small>
-                              </div>
+                                  <div class="empresa-info">
+                                    <img src="Logo2.jpg" alt="Logo 2" class="mb-2 img-fluid rounded-circle">
+                                      <div class="empresa-info-content" style="color:#0463cb;">
+                                        <p> Ingresos: $200,000 <i class="far fa-smile"></i>
+                                      </div>
+                                      <div class="empresa-info-content" style="color:#0463cb;">
+                                        <p> Gastos: $150,000 <i class="far fa-meh"></i>
+                                      </div>
+                                      <div class="empresa-info-content" style="color:#0463cb;">
+                                        <p> Capital: $50,000 <i class="far fa-frown"></i>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
                           <div class="tab-pane fade" id="empresa3" role="tabpanel">
                               <div class="empresa-container">
-                                <div class="empresa-info" style="color:#0463cb;">
-                                  <img src="Logo3.jpg" alt="Logo3" class="mb-2 img-fluid rounded-circle">
-                                  <i class="fas fa-balance-scale"></i>   <h6>Político Intelectual</h6>    
-                                  <small><p>Plataforma mexicana dedicada al análisis y discusión de temas políticos, promoviendo el pensamiento crítico y la formación cívica en México.</p></small>
-                              </div>
+                                  <div class="empresa-info">
+                                    <img src="Logo3.jpg" alt="Logo 3" class="mb-2 img-fluid rounded-circle">
+                                      <div class="empresa-info-content" style="color:#0463cb;">
+                                        <p> Ingresos: $50,000 <i class="far fa-smile"></i>
+                                      </div>
+                                      <div class="empresa-info-content" style="color:#0463cb;">
+                                        <p> Gastos: $80,000 <i class="far fa-meh"></i>
+                                      </div>
+                                      <div class="empresa-info-content" style="color:#0463cb;">
+                                        <p> Capital: -$30,000 <i class="far fa-frown"></i>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
                       </div>
@@ -1077,18 +1076,11 @@ Yo: Nada en particular, ¿tú?
             
        
   </div>
-<!-- Aquí se mostrará la publicación -->
+
 <div class="col-md-9">
   <div id="publicacion" class="">
     <div class="card-body rounded-lg" style=" background-color: white;">
-      <div class="search-container">
-        <div class="mb-2 input-group">
-            <input type="text" id="search-input" class="form-control" placeholder="Buscar . . .">
-            <div class="input-group-append">
-                <button id="search-btn" class="btn btn-info" type="button"><i class="fas fa-search"></i></button>
-            </div>
-        </div>
-              <div class="text-white pb-1 pt-2 pr-2 pl-2 rounded-lg" ALIGN="left" style="background-color: whitesmoke">
+              <div class="text-white pt-2 pr-2 pl-2 rounded-lg" ALIGN="left" style="background-color: whitesmoke">
                 <img class="mt-1 rounded-lg" src="https://i.ibb.co/Nxkbn3C/Dise-o-sin-t-tulo-3.png"  width="30" height="30" alt="Logo">
                 <small class="text-muted" >Humano: Sergio CM</small>
                 <h5 class="card-title mt-2" style="color: #15566a">${titulo}</h5>
@@ -1101,9 +1093,9 @@ Yo: Nada en particular, ¿tú?
                   <i class="ml-1 fas fa-comment"></i> 1.2k
                   <i class="ml-1 fas fa-share"></i> 360
                   <i class="ml-1 fas fa-shopping-cart"></i> 1.5k</div>
-               
+                <img src="" class="img-fluid align-self-center">
               </div>
-              <div class="d-flex justify-content-between mt-2">
+              <div class="d-flex justify-content-between mt-3">
                 <div class="btn-group">
                 
                   <button type="button" id="heartBtn" class="btn btn-sm btn-outline-danger"><i class="far fa-heart"></i></button>
@@ -1115,6 +1107,7 @@ Yo: Nada en particular, ¿tú?
 </div>
 </div>
     </div>
+    <!-- Aquí se mostrará la publicación -->
   </div>
     
      
@@ -1709,45 +1702,149 @@ h1,h2,h3,h4,h5,h6,p{
           </script>
         <% } %>
 
-      <!-- Asegúrate de tener un botón para transferir fondos en tu HTML -->
-<button onclick="transferirFondos()">Transferir Fondos</button>
-
-<script>
-async function transferirFondos() {
-    try {
-        let amount = document.getElementById('amount').value; // Asegúrate de tener un input con id 'amount'
-        let response = await fetch('tu_endpoint_del_servidor', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ amount: amount })
-        });
-
-        let result = await response.json();
-
-        if(result.success) {
-            alert('Transferencia realizada con éxito!');
-        } else {
-            alert('Hubo un error al realizar la transferencia');
-        }
-
-    } catch(error) {
-        console.error('Error al realizar la transferencia', error);
-    }
-}
-</script>
-
- 
+       
   <!-- Pie de pagina -->
 
   <div style="color: #2d7990; text-align: center;" class="mt-3" style="background-color: white;">
     <a class="" href="#">
       <img class="mb-2" src="https://i.ibb.co/f4vZNKd/Captura-de-pantalla-2023-04-29-201016.png" width="80" height="80" alt="Logo">		
     </a>
-    <p class="m-0 pb-2"> Programador Sergio Campos Medina. <br> Registro de obra No.03-2022-050214132600-01<br>  &copy; 2022-2027</p>
+    <p class="m-0 pb-4"> Programador Sergio Campos Medina. <br> Registro de obra No.03-2022-050214132600-01<br>  &copy; 2022-2027</p>
     
   </div>
+
+
+ 
+    <form id="contractForm">
+        <label for="humanIdSender">ID de Humano (Vendedor):</label>
+        <input type="text" id="humanIdSender" name="humanIdSender" required><br><br>
+        <label for="humanIdReceiver">ID de Humano (Comprador):</label>
+        <input type="text" id="humanIdReceiver" name="humanIdReceiver" required><br><br>
+        <div id="assetsContainer"></div>
+        <button type="button" onclick="addAssetField()">Añadir Activo Digital</button><br><br>
+        <input type="submit" value="Generar Contrato">
+    </form>
+</div>
+<script>
+    window.onload = function() {
+        Swal.fire({
+          title: 'Ingrese Usuario y Contraseña',
+        html:
+        '<div id="Ingresa" class="text-center align-items-center" style="background-color: whites;">'+
+            '<div class="pt-4 pb-4 pr-4 pl-4 m-3 rounded-lg align-items-center " style="background: linear-gradient(to bottom,  #2C758C ,  #F17460 )">'+
+                '<div class="login-form align-items-center ">'+
+                    '<div class="register-form form pb-3 pt-3 align-items-center rounded-lg" style="color:#15566a; background-color: rgba(245, 245, 245, 0.313)">'+
+                        '<img class="mb-2" src="https://cdn-icons-png.flaticon.com/512/2867/2867197.png" alt="" width="60" height="60">'+
+                        '<form id="login-form" action="auth" method="POST">'+
+                            '<div class="text-white ml-4 mr-4 pt-4 pb-4 pr-5 pl-5 rounded-lg " style="background-color: whitesmoke">'+
+                                '<main class="form-signin w-100 m-auto" style="color: #2c758c;">'+
+                                    '<h6 class="mb-3 fw-normal">Humano:</h6>'+
+                                    '<div class="form-floating">'+
+                                        '<input type="text" name="humano" value="Hashkey" style="color:#f87d6a" class="form-control" id="humanoInput" placeholder="Humano" minlength="18" maxlength="18">'+
+                                        '<div class="form-floating mt-3">'+
+                                            '<div class="m-3"><h6 for="floatingInput ">Contraseña:</h6></div>'+
+                                            '<input type="password" name="contraseña" style="color:#f87d6a" class="form-control" id="floatingPassword" minlength="8" maxlength="20" placeholder="*********">'+
+                                        '</div>'+
+                                    '</div>'+
+                                    
+                                    '<button class="w-100 btn btn-info btn-success" type="button" id="submit-button">Ingresa</button>'+
+                                '</main>'+
+                            '</div>'+
+                        '</form>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+        '</div>',
+        showCloseButton: false,
+        showCancelButton: false,
+        showConfirmButton: false,
+        focusConfirm: false,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false
+    });
+
+    document.getElementById('submit-button').addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const humano = document.getElementById('humanoInput').value;
+        const password = document.getElementById('floatingPassword').value;
+        
+        console.log("Usuario ingresado: ", humano); 
+        console.log("Contraseña ingresada: ", password); 
+        
+        if(humano === 'Hashkey' && password === 'human_xchange') {
+          Swal.fire('Bienvenido', 'Has ingresado correctamente', 'success');
+            document.getElementById('content').style.display = 'block'; // Muestra el elemento con id 'content'
+       
+        } else {
+            console.log("Usuario o contraseña incorrectos"); 
+            Swal.fire('Error', 'Usuario o Contraseña Incorrectos', 'error');
+        }
+    });
+};
+function addAssetField() {
+    const container = document.getElementById('assetsContainer');
+    const div = document.createElement('div');
+    div.innerHTML = '<label for="assetId">ID del Activo:</label>' +
+                    '<input type="text" name="assetId" required><br>' +
+                    '<label for="assetPrice">Precio del Activo:</label>' +
+                    '<input type="number" name="assetPrice" required><br><br>';
+    container.appendChild(div);
+}
+
+
+document.getElementById('contractForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const humanIdSender = document.getElementById('humanIdSender').value;
+    const humanIdReceiver = document.getElementById('humanIdReceiver').value;
+    const tokenUnico = 'TokenUnico1234'; // Este debería ser generado de forma única para cada contrato
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.text('CONTRATO DE COMPRA DE ACTIVOS DIGITALES', 20, 30);
+    doc.text(`ID de Humano (Vendedor): ${humanIdSender}`, 20, 40);
+    doc.text(`ID de Humano (Comprador): ${humanIdReceiver}`, 20, 50);
+    doc.text(`Token Único por Contrato: ${tokenUnico}`, 20, 60);
+
+    const assetsContainer = document.getElementById('assetsContainer');
+    const assetDivs = assetsContainer.getElementsByTagName('div');
+    let yOffset = 70;
+    
+    for (const assetDiv of assetDivs) {
+        const assetIdInput = assetDiv.querySelector('input[name="assetId"]');
+        const assetPriceInput = assetDiv.querySelector('input[name="assetPrice"]');
+        
+        const assetId = assetIdInput ? assetIdInput.value : '';
+        const assetPrice = assetPriceInput ? assetPriceInput.value : '';
+        
+        doc.text(`ID del Activo: ${assetId}`, 20, yOffset);
+        yOffset += 10;
+        doc.text(`Precio del Activo: ${assetPrice}`, 20, yOffset);
+        yOffset += 10;
+    }
+
+    const qrDiv = document.createElement('div');
+    document.body.appendChild(qrDiv);
+    new QRCode(qrDiv, { text: tokenUnico, width: 128, height: 128 });
+
+    html2canvas(qrDiv).then((canvas) => {
+    const dataURL = canvas.toDataURL('image/png');
+    const qrSize = 30;
+    const qrPositionX = 20;
+    const qrPositionY = doc.internal.pageSize.getHeight() - qrSize - 30; // Ajustar posición en Y
+    
+    doc.addImage(dataURL, 'PNG', qrPositionX, qrPositionY, qrSize, qrSize); // Asegurar dimensiones cuadradas
+    
+    document.body.removeChild(qrDiv);
+    
+    doc.save('contrato.pdf');
+    Swal.fire('Contrato Generado', 'El contrato ha sido generado y descargado.', 'success');
+});
+});
+</script>
+
 
   <!-- Scripts --> 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -1759,3 +1856,4 @@ async function transferirFondos() {
   crossorigin="anonymous"></script>
   </body>
   </html>
+
