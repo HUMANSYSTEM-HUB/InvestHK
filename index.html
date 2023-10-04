@@ -24,496 +24,499 @@
 <!-- Body -->  
 <body>   
  <div id="content" style="display:none;">
-<div id="Navbar" class="text-center sticky-top pl-2 mt-2 pr-2" style="background-color: white;">
-  <nav class="navbar navbar-expand-lg sticky-top  rounded-lg" style="background-color: whitesmoke;">
-    <img class="align-items-center background-color:white rounded-lg" src="https://i.ibb.co/f4vZNKd/Captura-de-pantalla-2023-04-29-201016.png"  width="60" height="60" alt="Logo">
-    <style>
-      .search-container {
-          position: relative;
-      }
-  
-      #suggestions {
-          display: none; /* Inicialmente oculto */
-          position: absolute; /* Posición absoluta respecto al div padre */
-          top: 100%; /* Alineado justo debajo del input */
-          left: 0;
-          right: 0;
-          z-index: 1000; /* Estar por encima de otros elementos */
-          width: 100%; /* Ajustarse al tamaño del div padre */
-      }
-  </style>
-  
-  <div class="search-container">
-      <div class="ml-2 input-group">
-          <input type="text" id="search-input" class="form-control" placeholder="Buscar . . .">
-          <div class="input-group-append">
-              <button id="search-btn" class="btn btn-info" type="button"><i class="fas fa-dna"></i></button>
-          </div>
-      </div>
-  
-      <div id="suggestions" style="background-color: white;">
-          <div class="text-white pt-2 pr-2 pl-2 rounded-lg" ALIGN="left" style="background-color: whitesmoke">
-                
-          </div>
-      </div>
-  </div>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-  <script>
-      const button = document.querySelector('#search-btn');
-      const suggestions = document.querySelector('#suggestions');
-  
-      button.addEventListener('click', async () => {
-          const query = document.getElementById('search-input').value;
-  
-          try {
-              const response = await axios.post('/get-response', { message: query });
-              const modelResponse = response.data.message;
-  
-              // Actualizar el contenido de la publicación/sugerencia basada en la respuesta
-              suggestions.querySelector('.text-white').innerHTML = modelResponse;
-  
-              // Mostrar el div de sugerencia
-              suggestions.style.display = 'block';
-          } catch (error) {
-              console.error(error);
-              Swal.fire({
-                  icon: 'error',
-                  title: 'Oops...',
-                  text: 'An error occurred while getting the response from the model.',
-              });
-          }
-      });
-  </script>
-  
 
- 
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto align-items-center">
-      <li class="nav-item">
-        <a a class="nav-link" href="#" style="color: #2c758c; font-size: 25px;"><i class="fas fa-file-media"></i></a>
-      </li>
-     <script>
-        // Obtén el elemento del enlace
-        const link = document.querySelector('.nav-link');
+<!-- Nav -->
+<style>@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+  #Navbar, .navbar, .card, .nav-link, .nav-user, .nav-building, .nav-link1, .nav-link2, .nav-link4, .nav-link5, .nav-link6, .nav-link7 {
+    font-family: 'Orbitron', sans-serif;
+  }
+#pricing-container {
+    display: none;
+}
+#Navbar {
+  background-color: white;
+  padding: 10px 0;
+}
+
+.navbar {
+  background-color: whitesmoke;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+
+.navbar img {
+  border-radius: 20%;
+  margin-right: 10px;
+}
+
+
+
+.search-container {
+  position: relative;
+  width: 250px;
+  margin-right: 10px;
+}
+
+#suggestions {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+.nav-link, .nav-transactions, .nav-user, .nav-building, .nav-link1, .nav-link2, .nav-link4, .nav-link5, .nav-link6, .nav-link7, .nav-statistics, .nav-documents{
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 16px;
+  margin: 16px 0;
+  background-color: #f9f9f9;
+} 
+
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card-description {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.card-date {
+  font-size: 14px;
+  color: #777;
+}
+
+.productos-container, .amigos-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.producto, .amigo {
+  flex: 0 0 30%;
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.producto img, .amigo img {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 50%;
+}
+</style>
+<div id="Navbar" class="text-center sticky-top pl-2 mt-1 pr-2">
+  <nav class="navbar navbar-expand-lg">
+      <!-- Logo -->
+      <img src="https://i.ibb.co/f4vZNKd/Captura-de-pantalla-2023-04-29-201016.png" alt="Logo" width="60" height="60">
+
+      <!-- Búsqueda -->
+      <div class="search-container ml-3">
+          <div class="input-group">
+              <input type="text" id="search-input" class="form-control" placeholder="Buscar . . .">
+              <div class="input-group-append">
+                  <button id="search-btn" class="btn btn-info"><i class="fas fa-dna"></i></button>
+              </div>
+          </div>
+          <div id="suggestions" class="rounded-lg">
+              <div class="text-white pt-2 pr-2 pl-2"></div>
+          </div>
+      </div>
+
+      <!-- Elementos del menú -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto align-items-center">
+                 <!-- Notificaciones de medios -->
+          <li class="nav-item">
+              <a class="nav-link1" href="#" style="color: #2c758c; font-size: 25px;"><i class="fas fa-file-media"></i></a>
+          </li>
       
-        // Agrega un event listener para el clic
-        link.addEventListener('click', () => {
-          // Muestra el cuadro de alerta SweetAlert
-          Swal.fire({
+          <!-- Información de tarjeta -->
+          <li class="nav-item">
+              <a class="nav-user" style="color: #2c758c; font-size: 25px;" href="#"><span class="fa fa-id-card"></span></a>
+          </li>
+      
+          <!-- Empresas 
+          <li class="nav-item">
+              <a class="nav-building ml-2" style="color: #2c758c; font-size: 25px;" href="#" onclick="mostrarEmpresas()"><i class="fas fa-building"></i></a>
+          </li>-->
+      
+          <!-- Amigos recientes -->
+          <li class="nav-item">
+              <a class="nav-link2" style="color: #2c758c; font-size: 25px;" href="#" onclick="mostrarAmigosRecientes()"><i class="fas fa-users"></i></a>
+          </li>
+      
+          <!-- Mensajes -->
+          <li class="nav-item">
+              <a class="nav-link4" style="color: #2c758c; font-size: 25px;" href="#" onclick="mostrarMensajesRecientes()"><i class="fas fa-envelope"></i></a>
+          </li>
+      
+              <!-- Transacciones -->
+          <li class="nav-item">
+            <a class="nav-transactions" href="#" style="color: #2c758c; font-size: 25px;"><i class="fas fa-exchange-alt"></i></a>
+        </li>
+        
+          <!-- Documentos -->
+          <li class="nav-item">
+            <a class="nav-documents" href="#" style="color: #2c758c; font-size: 25px;"><i class=" fas fa-folder-open"></i></a>
+        </li> 
+
+          <!-- Estadistica -->
+          <li class="nav-item">
+            <a class="nav-statistics" href="#" style="color: #2c758c; font-size: 25px;"><i class=" fas fa-chart-line"></i></a>
+        </li>
+
+      
+        <!-- Carrito de compras -->
+        <li class="nav-item">
+          <a class="nav-link7" style="color: #2c758c; font-size: 25px;" href="#" onclick="mostrarCarritoDeCompras()"><i class="fas fa-shopping-cart"></i></a>
+      </li>
+
+          <!-- Información de Stripe -->
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: #2c758c; font-size: 15px;"><i class="fas fa-info fa-lg"></i></a>
+        </li>
+        
+      
+          <!-- Salir -->
+          <li class="nav-item">
+              <a class="nav-link9" href="logout" style="color: #2c758c; font-size: 25px;"><i class="fas fa-sign-out-alt"></i></a>
+          </li>
+      </ul>
+      
+      </div>
+  </nav>
+</div>
+
+<script>
+  document.querySelector('.nav-transactions').addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    // Datos de ejemplo para las transacciones
+    const transacciones = [
+        {
+            fecha: "2023-09-01",
+            descripcion: "Compra en Tienda ABC",
+            monto: "$150.00",
+            tipo: "Débito"
+        },
+        {
+            fecha: "2023-09-05",
+            descripcion: "Depósito de nómina",
+            monto: "$1,200.00",
+            tipo: "Crédito"
+        },
+        {
+            fecha: "2023-09-07",
+            descripcion: "Retiro en cajero",
+            monto: "$200.00",
+            tipo: "Débito"
+        }
+        // ... puedes agregar más transacciones aquí
+    ];
+    
+    let contenido = `
+        <div>
+            ${transacciones.map(transaccion => `
+                <div class="card">
+                    <h4 class="card-title">${transaccion.fecha} - ${transaccion.tipo}</h4>
+                    <p class="card-description"><strong>Descripción:</strong> ${transaccion.descripcion}</p>
+                    <p class="card-description"><strong>Monto:</strong> ${transaccion.monto}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    
+    Swal.fire({
+        title: "Transacciones Recientes",
+        html: contenido,
+        confirmButtonText: "Cerrar",
+        width: '600px',
+    });
+});
+
+  document.querySelector('.nav-statistics').addEventListener('click', function(event) {
+      event.preventDefault();
+      
+      const contenido = `
+          <div class="card">
+              <h4 class="card-title">Estadísticas del Mes</h4>
+              <p class="card-description"><strong>Visitas:</strong> 5,000</p>
+              <p class="card-description"><strong>Productos Vendidos:</strong> 1,200</p>
+              <p class="card-description"><strong>Ganancias:</strong> $10,000</p>
+              <p class="card-description"><strong>Mensajes Recibidos:</strong> 450</p>
+              <!-- Puedes agregar más estadísticas aquí -->
+          </div>
+      `;
+      
+      Swal.fire({
+          title: "Estadísticas",
+          html: contenido,
+          confirmButtonText: "Cerrar",
+          width: '600px',
+      });
+  });
+
+document.querySelector('.nav-documents').addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    const contenido = `
+        <div>
+            <div class="card">
+                <h4 class="card-title">Imágenes</h4>
+                <p class="card-description"><a href="#" target="_blank">Imagen 1</a></p>
+                <p class="card-description"><a href="#" target="_blank">Imagen 2</a></p>
+            </div>
+            <div class="card">
+                <h4 class="card-title">Videos</h4>
+                <p class="card-description"><a href="#" target="_blank">Video 1</a></p>
+                <p class="card-description"><a href="#" target="_blank">Video 2</a></p>
+            </div>
+            <div class="card">
+                <h4 class="card-title">Audios</h4>
+                <p class="card-description"><a href="#" target="_blank">Audio 1</a></p>
+                <p class="card-description"><a href="#" target="_blank">Audio 2</a></p>
+            </div>
+            <div class="card">
+                <h4 class="card-title">Documentos</h4>
+                <p class="card-description"><a href="#" target="_blank">Documento 1</a></p>
+                <p class="card-description"><a href="#" target="_blank">Documento 2</a></p>
+            </div>
+        </div>
+    `;
+    
+    Swal.fire({
+        title: "Documentos",
+        html: contenido,
+        confirmButtonText: "Cerrar",
+        width: '600px',
+    });
+});
+
+    /* ---------- Búsqueda con sugerencias ---------- */
+    const button = document.querySelector('#search-btn');
+    const suggestions = document.querySelector('#suggestions');
+
+    button.addEventListener('click', async () => {
+        const query = document.getElementById('search-input').value;
+
+        try {
+            const response = await axios.post('/get-response', { message: query });
+            const modelResponse = response.data.message;
+
+            // Actualizar el contenido de la publicación/sugerencia basada en la respuesta
+            suggestions.querySelector('.text-white').innerHTML = modelResponse;
+
+            // Mostrar el div de sugerencia
+            suggestions.style.display = 'block';
+        } catch (error) {
+            console.error(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'An error occurred while getting the response from the model.',
+            });
+        }
+    });
+
+    
+    // Obtén el elemento del enlace
+    const linkMedia = document.querySelector('.nav-link1');
+
+    // Agrega un event listener para el clic
+    linkMedia.addEventListener('click', () => {
+        // Muestra el cuadro de alerta SweetAlert
+        Swal.fire({
             icon: 'info', // Icono de información
-            title: 'Tienes un mensaje', // Título del cuadro de alerta
-            text: 'Tienes un mensaje', // Texto del cuadro de alerta
+            title: 'Notificación', // Título del cuadro de alerta
+            text: 'Tienes una notificación.', // Texto del cuadro de alerta
             showClass: {
-              popup: 'animate__animated animate__fadeInDown' // Agrega una animación al mostrar
+                popup: 'animate__animated animate__fadeInDown' // Agrega una animación al mostrar
             },
             hideClass: {
-              popup: 'animate__animated animate__fadeOutUp' // Agrega una animación al ocultar
+                popup: 'animate__animated animate__fadeOutUp' // Agrega una animación al ocultar
             }
-          });
-      
-          // Agrega una animación de parpadeo al ícono
-          const icon = document.querySelector('.fas.fa-building');
-          icon.classList.add('animate__animated', 'animate__flash');
-      
-          // Después de unos segundos, detén la animación de parpadeo
-          setTimeout(() => {
-            icon.classList.remove('animate__animated', 'animate__flash');
-          }, 3000); // 3000 milisegundos = 3 segundos (ajusta esto si lo deseas)
         });
-      </script>
-       
-      <li class="nav-item">
-        <a a class="nav-user " style="color: #2c758c; font-size: 25px;" href="# "><span class="fa fa-id-card"></span></a>
-      </li>
-      <script>
-        // Función para mostrar el SweetAlert y generar el código QR
-        function mostrarSweetAlert() {
-          const nombreHumano = "Tarjeta de Identificación Humana Digital";
-          const idHumano = "ID del humano";
-      
-          // Crear el elemento para el código QR
-          const qrElement = document.createElement("div");
-      
-          // Generar el código QR usando la biblioteca 'qrcode.js'
-          const qr = new QRCode(qrElement, {
+    });
+    /* ---------- Mostrar información de la tarjeta ---------- */
+    function mostrarSweetAlert() {
+        const nombreHumano = "Tarjeta de Identificación Humana Digital";
+        const idHumano = "ID12345678";
+        const saldo = "$1,000.00";
+        const numeroTarjeta = "1234-5678-9101-1121";
+
+        const qrElement = document.createElement("div");
+
+        // Generar el código QR usando la biblioteca 'qrcode.js'
+        const qr = new QRCode(qrElement, {
             text: idHumano,
             width: 128,
             height: 128,
-          });
-      
-          Swal.fire({
-            title: nombreHumano,
-            text: idHumano,
-            html: qrElement, // Mostrar el código QR en el mensaje del SweetAlert
+        });
+
+        const contenido = `
+            <div id="card-container">
+                <div class="card-detail"><span class="card-icon fa fa-user"></span>Nombre: ${nombreHumano}</div>
+                <div class="card-detail"><span class="card-icon fa fa-credit-card"></span>Número: ${numeroTarjeta}</div>
+                <div class="card-detail"><span class="card-icon fa fa-dollar-sign"></span>Saldo: ${saldo}</div>
+                <div class="card-detail"><span class="card-icon fa fa-id-card"></span>ID: ${idHumano}</div>
+                <div style="text-align: center; margin-top: 20px;">${qrElement.outerHTML}</div>
+            </div>
+        `;
+
+        Swal.fire({
+            title: "Información de la Tarjeta",
+            html: contenido,
             confirmButtonText: "Cerrar",
-          });
-        }
-      
-        // Asignar el evento click al enlace para mostrar el SweetAlert
-        const enlace = document.querySelector(".nav-user");
-        enlace.addEventListener("click", mostrarSweetAlert);
-      </script>
-      
-       <li class="nav-item" >
-        <a a class="nav-building ml-2" style="color: #2c758c; font-size: 25px;" href="#"  onclick="mostrarEmpresas()"><i class="fas fa-building"></i></a>
-      </li>
-<script>
-  // Función para mostrar el SweetAlert con información de las tres empresas
-  function mostrarEmpresas() {
-    const empresas = [
-      {
-        nombre: "Nombre de la Empresa 1",
-        imagenURL: "URL de la imagen de la Empresa 1",
-        descripcion: "Descripción de la Empresa 1",
-        gastos: "Gastos de la Empresa 1",
-      },
-      {
-        nombre: "Nombre de la Empresa 2",
-        imagenURL: "URL de la imagen de la Empresa 2",
-        descripcion: "Descripción de la Empresa 2",
-        gastos: "Gastos de la Empresa 2",
-      },
-      {
-        nombre: "Nombre de la Empresa 3",
-        imagenURL: "URL de la imagen de la Empresa 3",
-        descripcion: "Descripción de la Empresa 3",
-        gastos: "Gastos de la Empresa 3",
-      }
-    ];
+        });
+    }
 
-    const contenido = `
-      <div>
-        <h3>${empresas[0].nombre}</h3>
-        <img src="${empresas[0].imagenURL}" alt="${empresas[0].nombre}" style="max-width: 200px; max-height: 200px;">
-        <p>${empresas[0].descripcion}</p>
-        <p>Gastos: ${empresas[0].gastos}</p>
-        <button onclick="mostrarEmpresa('${empresas[1].nombre}', '${empresas[1].imagenURL}', '${empresas[1].descripcion}', '${empresas[1].gastos}')">${empresas[1].nombre}</button>
-        <button onclick="mostrarEmpresa('${empresas[2].nombre}', '${empresas[2].imagenURL}', '${empresas[2].descripcion}', '${empresas[2].gastos}')">${empresas[2].nombre}</button>
-      </div>
-    `;
+    // Asignar el evento click al enlace para mostrar el SweetAlert
+    const enlaceTarjeta = document.querySelector(".nav-user");
+    enlaceTarjeta.addEventListener("click", mostrarSweetAlert);
 
-    Swal.fire({
-      title: "Empresas",
-      html: contenido,
-      confirmButtonText: "Cerrar",
+    /* ---------- Mostrar empresas ---------- */
+    function mostrarEmpresas() {
+        const empresas = [
+            { nombre: "Empresa 1", descripcion: "Descripción de la Empresa 1" },
+            { nombre: "Empresa 2", descripcion: "Descripción de la Empresa 2" },
+            { nombre: "Empresa 3", descripcion: "Descripción de la Empresa 3" },
+        ];
+
+        const contenido = empresas.map(empresa => `
+            <div class="card">
+                <div class="card-title">${empresa.nombre}</div>
+                <div class="card-description">${empresa.descripcion}</div>
+            </div>
+        `).join("");
+
+        Swal.fire({
+            title: "Empresas",
+            html: contenido,
+            confirmButtonText: "Cerrar",
+        });
+    }
+
+    /* ---------- Mostrar amigos recientes ---------- */
+    function mostrarAmigosRecientes() {
+        const amigosRecientes = [
+            { nombre: "Amigo 1", descripcion: "Descripción del Amigo 1" },
+            { nombre: "Amigo 2", descripcion: "Descripción del Amigo 2" },
+            { nombre: "Amigo 3", descripcion: "Descripción del Amigo 3" },
+        ];
+
+        const contenido = amigosRecientes.map(amigo => `
+            <div class="card">
+                <div class="card-title">${amigo.nombre}</div>
+                <div class="card-description">${amigo.descripcion}</div>
+            </div>
+        `).join("");
+
+        Swal.fire({
+            title: "Amigos Recientes",
+            html: contenido,
+            confirmButtonText: "Cerrar",
+        });
+    }
+
+    /* ---------- Mostrar mensajes recientes ---------- */
+    function mostrarMensajesRecientes() {
+        const mensajesRecientes = [
+            { remitente: "Amigo 1", mensaje: "Hola, ¿cómo estás?" },
+            { remitente: "Amigo 2", mensaje: "Nos vemos mañana" },
+            { remitente: "Amigo 3", mensaje: "Tienes un nuevo mensaje" },
+        ];
+
+        const contenido = mensajesRecientes.map(mensaje => `
+            <div class="card">
+                <div class="card-title">${mensaje.remitente}</div>
+                <div class="card-description">${mensaje.mensaje}</div>
+            </div>
+        `).join("");
+
+        Swal.fire({
+            title: "Mensajes Recientes",
+            html: contenido,
+            confirmButtonText: "Cerrar",
+        });
+    }
+
+    /* ---------- Mostrar carrito de compras ---------- */
+    function mostrarCarritoDeCompras() {
+        const productosCarrito = [
+            { nombre: "Producto 1", descripcion: "Descripción del Producto 1", precio: "$100" },
+            { nombre: "Producto 2", descripcion: "Descripción del Producto 2", precio: "$200" },
+            { nombre: "Producto 3", descripcion: "Descripción del Producto 3", precio: "$300" },
+        ];
+
+        const contenido = productosCarrito.map(producto => `
+            <div class="card">
+                <div class="card-title">${producto.nombre}</div>
+                <div class="card-description">${producto.descripcion}</div>
+                <div class="card-description">${producto.precio}</div>
+            </div>
+        `).join("");
+
+        Swal.fire({
+            title: "Carrito de Compras",
+            html: contenido,
+            confirmButtonText: "Cerrar",
+        });
+    }
+    // Mostrar información de Stripe
+    document.querySelector('.nav-link').addEventListener('click', function(event) {
+        event.preventDefault();
+
+        // Obtener el contenido del div
+        let divContent = document.getElementById('pricing-container').innerHTML;
+
+        Swal.fire({
+            html: divContent,
+            showCloseButton: true,
+            focusConfirm: false,
+            confirmButtonText: 'Cerrar',
+        });
     });
-  }
-
-  // Función para mostrar el SweetAlert con información de una empresa
-  function mostrarEmpresa(nombreEmpresa, imagenURL, descripcion, gastos) {
-    const contenido = `
-      <div>
-        <h3>${nombreEmpresa}</h3>
-        <img src="${imagenURL}" alt="${nombreEmpresa}" style="max-width: 200px; max-height: 200px;">
-        <p>${descripcion}</p>
-        <p>Gastos: ${gastos}</p>
-      </div>
-    `;
-
-    Swal.fire({
-      title: nombreEmpresa,
-      html: contenido,
-      confirmButtonText: "Cerrar",
-    });
-  }
-</script>
-      <li class="nav-item">
-        <a a class="nav-link" style="color: #2c758c; font-size: 25px;" href="#" onclick="mostrarAmigosRecientes()"><i class="fas fa-users"></i></a>
-      </li>
-      <script>
-        function printFriends() {
-          const friends = [
-            {
-              name: "Amigo 1",
-              description: "Este es el amigo número 1."
-            },
-            {
-              name: "Amigo 2",
-              description: "Este es el amigo número 2."
-            },
-            {
-              name: "Amigo 3",
-              description: "Este es el amigo número 3."
-            }
-          ];
-    
-          const friendContainer = document.getElementById("friendContainer");
-          friendContainer.innerHTML = "";
-    
-          friends.forEach(friend => {
-            const friendDiv = document.createElement("div");
-            const nameElement = document.createElement("h3");
-            const descriptionElement = document.createElement("p");
-    
-            nameElement.textContent = friend.name;
-            descriptionElement.textContent = friend.description;
-    
-            friendDiv.appendChild(nameElement);
-            friendDiv.appendChild(descriptionElement);
-            friendContainer.appendChild(friendDiv);
-          });
-        }
-      </script>
-
-
-
-<!-- Aquí está el formulario para crear una empresa -->
-
-<script>
-  // Función para mostrar el modal para crear una empresa
-  function mostrarFormularioCrearEmpresa() {
-    const modalCrearEmpresa = document.getElementById("modalCrearEmpresa");
-    modalCrearEmpresa.style.display = "block";
-  }
-
-  // Función para cerrar el modal para crear una empresa
-  function cerrarModalCrearEmpresa() {
-    const modalCrearEmpresa = document.getElementById("modalCrearEmpresa");
-    modalCrearEmpresa.style.display = "none";
-  }
-
-  // Función para crear una empresa y mostrar mensaje de confirmación
-  function crearEmpresa() {
-    const nombreEmpresa = document.getElementById("nombreEmpresa").value;
-    const descripcionEmpresa = document.getElementById("descripcionEmpresa").value;
-
-    // Aquí puedes procesar los datos de la empresa, por ejemplo, enviarlos a un servidor o almacenarlos localmente
-    // ...
-
-    // Mostrar mensaje de confirmación
-    Swal.fire({
-      icon: 'success',
-      title: 'Empresa creada',
-      text: `Se ha creado la empresa "${nombreEmpresa}" con éxito.`,
-      confirmButtonText: "Cerrar",
-    });
-
-    // Cerrar el modal después de crear la empresa
-    cerrarModalCrearE
-    mpresa();
-  }
-</script>
-      <li class="nav-item">
-        <a a class="nav-link" style="color: #2c758c; font-size: 25px;" href="#" onclick="mostrarMensajesRecientes()"><i class="fas fa-envelope"></i></a>
-      </li>
-
-<script>
-  // Datos de ejemplo para los amigos
-  const amigosRecientes = [
-    {
-      nombre: "Amigo 1",
-      descripcion: "Descripción del Amigo 1",
-      avatarURL: "URL del avatar del Amigo 1",
-    },
-    {
-      nombre: "Amigo 2",
-      descripcion: "Descripción del Amigo 2",
-      avatarURL: "URL del avatar del Amigo 2",
-    },
-    {
-      nombre: "Amigo 3",
-      descripcion: "Descripción del Amigo 3",
-      avatarURL: "URL del avatar del Amigo 3",
-    },
-  ];
-
-  // Función para mostrar los amigos recientes en SweetAlert
-  function mostrarAmigosRecientes() {
-    const contenido = `
-      <div>
-        <h3>Amigos Recientes</h3>
-        <div class="amigos-container">
-          ${amigosRecientes
-            .map(
-              (amigo) => `
-                <div class="amigo">
-                  <img src="${amigo.avatarURL}" alt="${amigo.nombre}">
-                  <p>${amigo.nombre}</p>
-                  <p>${amigo.descripcion}</p>
-                </div>
-              `
-            )
-            .join("")}
-        </div>
-      </div>
-    `;
-
-    Swal.fire({
-      title: "Amigos Recientes",
-      html: contenido,
-      confirmButtonText: "Cerrar",
-    });
-  }
 </script>
 
-<style>
-  /* Estilos adicionales para los amigos recientes */
-  .amigos-container {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .amigo {
-    flex: 0 0 30%;
-    text-align: center;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
-  .amigo img {
-    max-width: 100px;
-    max-height: 100px;
-    border-radius: 50%;
-  }
-</style>
-      <li class="nav-item" onclick="window.print()">
-        <a a class="nav-link" style="color: #2c758c; font-size: 25px;" href="#"><i class="fas fa-dollar-sign"></i></a>
-      </li>
-  
-
-<script>
-  // Datos de ejemplo para los mensajes
-  const mensajesRecientes = [
-    {
-      remitente: "Amigo 1",
-      contenido: "Hola, ¿cómo estás?",
-      fecha: "2023-07-22 10:30:00",
-    },
-    {
-      remitente: "Amigo 2",
-      contenido: "¡Nos vemos mañana en el parque!",
-      fecha: "2023-07-21 18:45:00",
-    },
-    {
-      remitente: "Amigo 3",
-      contenido: "¿Qué tal fue tu día?",
-      fecha: "2023-07-20 12:15:00",
-    },
-  ];
-
-  // Función para mostrar los mensajes recientes en SweetAlert
-  function mostrarMensajesRecientes() {
-    const contenido = `
-      <div>
-        <h3>Mensajes Recientes</h3>
-        <ul class="mensajes-list">
-          ${mensajesRecientes
-            .map(
-              (mensaje) => `
-                <li>
-                  <p><strong>${mensaje.remitente}</strong></p>
-                  <p>${mensaje.contenido}</p>
-                  <p>${mensaje.fecha}</p>
-                </li>
-              `
-            )
-            .join("")}
-        </ul>
-      </div>
-    `;
-
-    Swal.fire({
-      title: "Mensajes Recientes",
-      html: contenido,
-      confirmButtonText: "Cerrar",
-    });
-  }
-</script>
-
-<style>
-  /* Estilos adicionales para los mensajes recientes */
-  .mensajes-list {
-    list-style: none;
-    padding: 0;
-  }
-
-  .mensajes-list li {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-  }
-</style>
-      <li class="nav-item" onclick="window.print()">
-        <a a class="nav-link" style="color: #2c758c; font-size: 25px;" href="#"><i class="fas fa-calendar-alt"></i></a>
-      </li>
-      <li class="nav-item">
-        <a a class="nav-link" href="#" style="color: #2c758c; font-size: 21px;"><i class="fas fa-folder fa-lg"></i></a>
-      </li>
-<!--   Aquí está el HTML para el botón de calendario
-<li class="nav-item">
-  <a class="nav-user mr-2" style="color: #2c758c; font-size: 25px;" href="#" onclick="mostrarCalendario()">Calendario</a>
-</li>
-
-
-<script>
-  // Datos de ejemplo para el calendario (eventos)
-  const eventosCalendario = [
-    {
-      title: "Evento 1",
-      start: "2023-07-23",
-    },
-    {
-      title: "Evento 2",
-      start: "2023-07-25",
-    },
-    {
-      title: "Evento 3",
-      start: "2023-07-27",
-    },
-  ];
-
-  // Función para mostrar el calendario en SweetAlert
-  function mostrarCalendario() {
-    const calendarioElement = document.createElement("div");
-    $(calendarioElement).fullCalendar({
-      events: eventosCalendario,
-    });
-
-    Swal.fire({
-      title: "Calendario",
-      html: calendarioElement,
-      confirmButtonText: "Cerrar",
-      didOpen: () => {
-        // Actualizar el tamaño del calendario cuando el SweetAlert se muestra completamente
-        $(calendarioElement).fullCalendar("render");
-      },
-    });
-  }
-</script> -->
-     
-      <li class="nav-item">
-        <a a class="nav-link" href="#" style="color: #2c758c; font-size: 30px;"> <i class="fas fa-chart-bar"></i></a>
-      </li>
-      <li class="nav-item">
-        <a a class="nav-link" href="#" style="color: #2c758c; font-size: 15px;"><i class="fas fa-info fa-lg"></i></a>
-      </li>
-      <li class="nav-item">
-        <a a class="nav-link" href="logout" style="color: #2c758c; font-size: 25px;"><i class="fas fa-sign-out-alt"></i></a>
-      </li>
-    </ul>
-  </div>
-    </nav>
+<div id="pricing-container" class="rounded-lg pt-2 mt-3">
+  <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+  <stripe-pricing-table
+    pricing-table-id="prctbl_1NtxIoBNUCxInZmnWZmzMsYv"
+    publishable-key="pk_live_51NSLmIBNUCxInZmnL6E2lNVgEqJXiBU9WOVrj53JxNUradDkE8gR2IbOUdstUibAlv766OmwsylWauUv4ptRa2lk00w9DO2Go6"
+  >
+  </stripe-pricing-table>
 </div>
 
 
-<div id="conoceme" class="text-center p-3" style="ba ckground-color: white;">
+<div id="conoceme" class="text-center p-3" style="background-color: white;">
 	<div class="p-3 text-white rounded-lg" style="background: linear-gradient(to right,  #2C758C ,  #F17460 )">
     <div class="row">
       <div class="col-md-3 align-self-center">
         <div class="col mb-3 p-3 col-md text-white rounded-lg"  style="background-color: white">
           <img class="mt-1 rounded-lg" src="https://i.ibb.co/Nxkbn3C/Dise-o-sin-t-tulo-3.png"  width="110" height="110" alt="Logo">
-          <% if (login) { %>
+         <!--  <% if (login) { %> -->
           <div class="" ALIGN="" ><h4 style="color:#15566a">Nombre:</h4>
-            <P style="color:#f87d6a"><%= nombre %></P>
-            <div><h6 style="color:#15566a">Humano:</h6><p style="color:#f87d6a"><%= curp %></p></div>
+            <P style="color:#f87d6a"><!-- <%= nombre %> --></P>
+            <div><h6 style="color:#15566a">Humano:</h6><p style="color:#f87d6a"><!-- <%= curp %> --></p></div>
             <div>
               <h6 style="color:#15566a">ID:</h6>
               <p style="color:#f87d6a">
-                <%= tarjeta_chip.replace(/(.{4})/g, '$1-') %> <!-- Utiliza el método replace() para insertar guiones después de cada grupo de 4 caracteres -->
+                <!-- <%= tarjeta_chip.replace(/(.{4})/g, '$1-') %>  --><!-- Utiliza el método replace() para insertar guiones después de cada grupo de 4 caracteres -->
               </p>
             </div>
             <div id="qrcode" class=" mb-3"></div>
@@ -584,7 +587,7 @@
                 });
               </script>
               
-            <% } %>
+            <!-- <% } %> -->
             </div>
             <div class="col p-3 mb-3 col-md text-white rounded-lg" style="background-color: #2c758c;">
               <div class="text-white pt-2 rounded-lg" style="background-color: #ffffff54">
@@ -636,7 +639,7 @@
             
             </div>
           
-            
+      <!--       
             <div class="col col-md text-white p-2 mb-3 rounded-lg" style="background-color:  #fcc404">
   
               <h4 class="mt-2" style="color:#0463cb;">Empresas <i class="ml-1 fa fa-building"></i></h4>
@@ -714,7 +717,7 @@
                       </div>
                   </div>
               </div>
-          </div>
+          </div> -->
  
           <div class="col col-md text-white p-2 mb-3 rounded-lg" style="background-color: #747c84 ">
             <h4 class="mt-2" style="color:whitesmoke"> Amigos <i class="ml-1 fa fa-users"></i></h4>
@@ -784,7 +787,7 @@
         </div>
 
        
-                <div class="col col-md text-white p-2 rounded-lg" style="background-color: #ffffff54">
+                <div class="col col-md text-white p-2 rounded-lg" style="background-color: #fcc404">
                     <h4 class="mt-2" style="color:#0463cb;"> Mensajes <i class="ml-1 fa fa-envelope"></i></h4>
                     <form action="#" method="GET" class="mb-3">
                       <div class="input-group">
@@ -833,7 +836,7 @@
             <div class="input-group mt-2">
                 <input type="text" class="form-control" placeholder="Escribe...">
                 <div class="input-group-append">
-                    <button class="btn btn-dark" type="button">
+                    <button class="btn btn-" type="button" style="color:#0463cb;">
                         <i class="fas fa-paperclip"></i>
                     </button>
                     <button class="btn btn-warning" type="button">
@@ -1077,44 +1080,136 @@ Yo: Nada en particular, ¿tú?
   </div>
 <!-- Aquí se mostrará la publicación -->
 <div class="col-md-9">
-  <div id="publicacion" class="">
-    <div class="card-body rounded-lg" style=" background-color: white;">
-      <div class="search-container">
+  <div class="d-flex flex-wrap justify-content-between mb-2">
+  <!-- Imagen -->
+        <div class="card1 rounded-lg" style="width: 6rem; background-color: white;">
+            <img src="URL_IMAGEN" class="card-img-top" alt="Imagen">
+            <div class="card-body">
+                  <h6 class="card-title" style="color: #15566a; font-size: 0.6rem;">Título Imagen</h6>
+        <p class="card-text" style="color: #15566a; font-size: 0.5rem;">Descripción de la imagen.</p>
+  
+            </div>
+        </div>
+
+        <!-- Vídeo -->
+        <div class="card1 rounded-lg" style="width: 6rem; background-color: white;">
+            <video width="50" controls>
+                <source src="URL_VIDEO.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+            </video>
+            <div class="card-body">
+                <h6 class="card-title" style="color: #15566a; font-size: 0.6rem;">Título Video</h6>
+                <p class="card-text" style="color: #15566a; font-size: 0.5rem;">Descripción del video.</p>
+            </div>
+        </div> 
+
+        <!-- Música -->
+        <div class="card1 rounded-lg" style="width: 6rem; background-color: white;">
+            <audio controls style="width: 100%;">
+        <source src="URL_MUSICA.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+            <div class="card1 rounded-lg">
+                <small><h6 class="card-title" style="color: #15566a; font-size: 0.6rem;">Título Canción</h6></small>
+             </div>
+        </div>
+        
+        <!-- Documento -->
+        <div class="card1 rounded-lg" style="width: 6rem; background-color: white;">
+            <i class="fas fa-file-alt fa-2x" style="color: #15566a;"></i>
+            <div class="card-body">
+                <h6 class="card-title" style="color: #15566a; font-size: 0.6rem;">Título Documento</h6>
+                <p class="card-text" style="color: #15566a; font-size: 0.5rem;">Descripción del documento.</p>
+            </div>
+        </div>
+        <!-- Imagen -->
+        <div class="card1 rounded-lg" style="width: 6rem; background-color: white;">
+            <img src="URL_IMAGEN" class="card-img-top" alt="Imagen">
+            <div class="card-body">
+                <h6 class="card-title" style="color: #15566a; font-size: 0.6rem;">Título Imagen</h6>
+                <p class="card-text" style="color: #15566a; font-size: 0.5rem;">Descripción de la imagen.</p>
+            </div>
+        </div>
+
+        <!-- Vídeo -->
+        <div class="card1 rounded-lg" style="width: 6rem; background-color: white;">
+            <video width="50" controls>
+                <source src="URL_VIDEO.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+            </video>
+            <div class="card1 rounded-lg">
+                <h6 class="card-title" style="color: #15566a; font-size: 0.6rem;">Título Video</h6>
+                <p class="card-text" style="color: #15566a; font-size: 0.5rem;">Descripción del video.</p>
+            </div>
+        </div>
+
+        <!-- Música -->
+        <div class="card1 rounded-lg" style="width: 6rem; background-color: white;">
+            <audio controls style="width: 100%;">
+        <source src="URL_MUSICA.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+            <div class="card1 rounded-lg">
+                <h6 class="card-title" style="color: #15566a; font-size: 0.5rem;">Título Canción</h6>
+             </div>
+        </div>
+        
+        <!-- Documento -->
+        <div class="card1 rounded-lg" style="width: 6rem; background-color: white;">
+            <i class="fas fa-file-alt fa-2x" style="color: #15566a;"></i>
+            <div class="card-body">
+                <h6 class="card-title" style="color: #15566a; font-size: 0.6rem;">Título Documento</h6>
+                <p class="card-text" style="color: #15566a; font-size: 0.5rem;">Descripción del documento.</p>
+            </div>
+        </div>
+        
+      <div class="card-body rounded-lg mt-2" style="background-color: white;">
+        <div class="search-container ">
         <div class="mb-2 input-group">
             <input type="text" id="search-input" class="form-control" placeholder="Buscar . . .">
             <div class="input-group-append">
                 <button id="search-btn" class="btn btn-info" type="button"><i class="fas fa-search"></i></button>
             </div>
         </div>
-              <div class="text-white pb-1 pt-2 pr-2 pl-2 rounded-lg" ALIGN="left" style="background-color: whitesmoke">
-                <img class="mt-1 rounded-lg" src="https://i.ibb.co/Nxkbn3C/Dise-o-sin-t-tulo-3.png"  width="30" height="30" alt="Logo">
-                <small class="text-muted" >Humano: Sergio CM</small>
-                <h5 class="card-title mt-2" style="color: #15566a">${titulo}</h5>
-                <p class="card-text" style="color: #15566a">${texto}</p>
-                <small class="text-muted">$ 50,490.00</small> <br>
-                <small class="text-muted">Fecha de publicación: 08/09/2023 12:30 am. </small>
-                <br> <small class="text-muted">Token: a9b8c7d6e5f4321zxy987wvu654tsrqpo3210lkjhgfedcba!@#$%^&*()</small>
-                                <br>
-                <div style="color: #15566a" class="mt-2"><i class="fas fa-heart"></i>  15.3M
-                  <i class="ml-1 fas fa-comment"></i> 1.2k
-                  <i class="ml-1 fas fa-share"></i> 360
-                  <i class="ml-1 fas fa-shopping-cart"></i> 1.5k</div>
-               
-              </div>
-              <div class="d-flex justify-content-between mt-2">
-                <div class="btn-group">
-                
-                  <button type="button" id="heartBtn" class="btn btn-sm btn-outline-danger"><i class="far fa-heart"></i></button>
+      </div>
+    <!-- Tarjetas pequeñas -->
+   <div id="publicacion" class="">
+      <div class="text-white pb-2 pt-2 pr-2 pl-2 rounded-lg" ALIGN="left" style="background-color: whitesmoke">
+        <img class="mt-1 rounded-lg" src="https://i.ibb.co/Nxkbn3C/Dise-o-sin-t-tulo-3.png"  width="30" height="30" alt="Logo">
+        <small class="text-muted" >Humano: Sergio CM</small>
+        <h5 class="card-title mt-2" style="color: #15566a">${titulo}</h5>
+        <p class="card-text" style="color: #15566a">${texto}</p>
+        <img src="" class="img-fluid align-self-center">
+        <small class="text-muted">$ 50,490.00</small> <br>
+        <small class="text-muted">Fecha de publicación: 08/09/2023 12:30 am. </small>
+        <br> <small class="text-muted">Token: a9b8c7d6e5f4321zxy987wvu654tsrqpo3210lkjhgfedcba!@#$%^&*()</small>
+                        <br>
+        <div style="color: #15566a" class="mt-1"><i class="fas fa-heart"></i>  15.3M
+          <i class="ml-1 fas fa-comment"></i> 1.2k
+          <i class="ml-1 fas fa-share"></i> 360
+          <i class="ml-1 fas fa-shopping-cart"></i> 1.5k</div>
+
+        <div class="btn-group mt-2">
+        
+          <button type="button" id="heartBtn" class="btn btn-sm btn-outline-danger"><i class="far fa-heart"></i></button>
 <button type="button" id="commentBtn" class="btn btn-sm btn-outline-secondary"><i class="far fa-comment"></i></button>
 <button type="button" id="shareBtn" class="btn btn-sm btn-outline-warning"><i class="fas fa-share"></i></button>
 <button type="button" id="userBtn" class="btn btn-outline-primary"><i class="fas fa-user-plus"></i></button>
 <button type="button" id="moneyBtn" class="btn btn-outline-success"><i class="fas fa-money-bill"></i></button>
 <button type="button" id="exclamationBtn" class="btn btn-sm btn-outline-dark"><i class="fas fa-exclamation-triangle"></i></button>
 </div>
-</div>
+
     </div>
-  </div>
-    
+      </div>
+      <div class="d-flex justify-content-between mt-3">
+       
+   </div>
+   </div>
+
+             
+    </div>
+  
+  
      
       <script>
         document.getElementById("publicacionForm").addEventListener("submit", function(event) {
@@ -1126,8 +1221,7 @@ Yo: Nada en particular, ¿tú?
           
           // Crear el contenido de la publicación dinámicamente
           var contenido = `
-            <div class="card-body rounded-lg" style=" background-color: white;">
-              <div class="text-white pt-2 pr-2 pl-2 rounded-lg" ALIGN="left" style="background-color: whitesmoke">
+            <div class="text-white pt-2 pr-2 pl-2 rounded-lg" ALIGN="left" style="background-color: whitesmoke">
                 <img class="mt-1 rounded-lg" src="https://i.ibb.co/Nxkbn3C/Dise-o-sin-t-tulo-3.png"  width="30" height="30" alt="Logo">
                 <small class="text-muted" >Humano: Sergio CM</small>
                 <h5 class="card-title mt-2" style="color: #15566a">${titulo}</h5>
@@ -1141,19 +1235,19 @@ Yo: Nada en particular, ¿tú?
                   <i class="ml-1 fas fa-share"></i> 360
                   <i class="ml-1 fas fa-shopping-cart"></i> 1.5k</div>
                 <img src="" class="img-fluid align-self-center">
+
               </div>
-              <div class="d-flex justify-content-between mt-3">
-                <div class="btn-group">
+              <div class="btn-group">
                 
-                  <button type="button" id="heartBtn" class="btn btn-sm btn-outline-danger"><i class="far fa-heart"></i></button>
+                <button type="button" id="heartBtn" class="btn btn-sm btn-outline-danger"><i class="far fa-heart"></i></button>
 <button type="button" id="commentBtn" class="btn btn-sm btn-outline-secondary"><i class="far fa-comment"></i></button>
 <button type="button" id="shareBtn" class="btn btn-sm btn-outline-warning"><i class="fas fa-share"></i></button>
 <button type="button" id="userBtn" class="btn btn-outline-primary"><i class="fas fa-user-plus"></i></button>
 <button type="button" id="moneyBtn" class="btn btn-outline-success"><i class="fas fa-money-bill"></i></button>
 <button type="button" id="exclamationBtn" class="btn btn-sm btn-outline-dark"><i class="fas fa-exclamation-triangle"></i></button>
-</div>
-
-              </div>
+    </div>
+              <div class="d-flex justify-content-between mt-3">
+               
             </div>
           `;
           
@@ -1164,9 +1258,7 @@ Yo: Nada en particular, ¿tú?
           document.getElementById("titulo").value = "";
           document.getElementById("texto").value = "";
         });
-      </script>
-
- <script>
+ 
 document.addEventListener('DOMContentLoaded', function() {
   const heartBtn = document.getElementById('heartBtn');
   const commentBtn = document.getElementById('commentBtn');
@@ -1567,13 +1659,13 @@ h1,h2,h3,h4,h5,h6,p{
                 
                 
                 
-<button type="button" class="btn btn-info ml-2" id="addFriendBtn"><i class="fas fa-user-plus mr-2"></i></button>
+<button type="button" class="btn btn-info ml-2" id="addFriendBtnn"><i class="fas fa-user-plus mr-2"></i></button>
 <button type="button" class="btn btn-info ml-2" id="addVideoCallBtn"><i class="fas fa-video mr-2"></i></button>
 
 <!-- ... -->
 
 <script>
-    document.getElementById('addFriendBtn').addEventListener('click', function() {
+    document.getElementById('addFriendBtnn').addEventListener('click', function() {
         Swal.fire({
             title: 'Agregar amigo',
             html: '<input id="swal-input1" class="swal2-input" placeholder="Buscar amigo...">',
@@ -1664,15 +1756,7 @@ h1,h2,h3,h4,h5,h6,p{
                 </div>
             </div>
             </div>
-            
-            <div id="pricing-container" style="background-color: white;" class="rounded-lg pt-2 mt-3">
-            <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
-            <stripe-pricing-table
-              pricing-table-id="prctbl_1NtxIoBNUCxInZmnWZmzMsYv"
-              publishable-key="pk_live_51NSLmIBNUCxInZmnL6E2lNVgEqJXiBU9WOVrj53JxNUradDkE8gR2IbOUdstUibAlv766OmwsylWauUv4ptRa2lk00w9DO2Go6"
-            >
-            </stripe-pricing-table>
-          </div>
+          
               </div>
               
               </div>
@@ -1745,20 +1829,7 @@ async function transferirFondos() {
     </a>
     <p class="m-0 pb-2"> Programador Sergio Campos Medina. <br> Registro de obra No.03-2022-050214132600-01<br>  &copy; 2022-2027</p>
     
-  </div>  </div>
-
-
- 
-    <form id="contractForm">
-        <label for="humanIdSender">ID de Humano (Vendedor):</label>
-        <input type="text" id="humanIdSender" name="humanIdSender" required><br><br>
-        <label for="humanIdReceiver">ID de Humano (Comprador):</label>
-        <input type="text" id="humanIdReceiver" name="humanIdReceiver" required><br><br>
-        <div id="assetsContainer"></div>
-        <button type="button" onclick="addAssetField()">Añadir Activo Digital</button><br><br>
-        <input type="submit" value="Generar Contrato">
-    </form>
-</div>
+  </div>
 <script>
     window.onload = function() {
         Swal.fire({
