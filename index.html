@@ -24,7 +24,6 @@
 <!-- Body -->  
 <body>   
  <div id="content" style="display:none;">
-
 <!-- Nav -->
 <style>@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
@@ -36,7 +35,7 @@
 }
 #Navbar {
   background-color: white;
-  padding: 10px 0;
+  padding: 0px 0;
 }
 
 .navbar {
@@ -69,7 +68,7 @@
   border: 1px solid #ccc;
 }
 
-.nav-link, .nav-transactions, .nav-user, .nav-building, .nav-link1, .nav-link2, .nav-link4, .nav-link5, .nav-link6, .nav-link7, .nav-statistics, .nav-documents{
+.nav-link, .nav-transactions, .nav-files, .nav-user, .nav-building, .nav-link1, .nav-link2, .nav-link4, .nav-link5, .nav-link6, .nav-link7, .nav-statistics, .nav-documents{
   margin: 0 10px;
   cursor: pointer;
 }
@@ -144,7 +143,12 @@
           <li class="nav-item">
               <a class="nav-link1" href="#" style="color: #2c758c; font-size: 25px;"><i class="fas fa-file-media"></i></a>
           </li>
-      
+
+          <!-- Contratos -->
+          <li class="nav-item">
+            <a class="nav-files" style="color: #2c758c; font-size: 25px;" href="#"><span class="fa fa-file-signature"></span></a>
+        </li>
+
           <!-- Información de tarjeta -->
           <li class="nav-item">
               <a class="nav-user" style="color: #2c758c; font-size: 25px;" href="#"><span class="fa fa-id-card"></span></a>
@@ -203,6 +207,49 @@
 </div>
 
 <script>
+document.querySelector('.nav-files').addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    // Datos de ejemplo para los contratos
+    const contratos = [
+        {
+            fechaCreacion: "2023-10-01",
+            asunto: "Contrato de Servicios Profesionales",
+            descripcion: "Contrato establecido con la empresa XYZ para la prestación de servicios de consultoría en sistemas de información."
+        },
+        {
+            fechaCreacion: "2023-09-25",
+            asunto: "Contrato de Arrendamiento",
+            descripcion: "Acuerdo de arrendamiento para el local 5B en la plaza comercial Centro Norte."
+        },
+        {
+            fechaCreacion: "2023-09-20",
+            asunto: "Carta de Intención de Compra",
+            descripcion: "Documento que establece la intención de la empresa ABC de adquirir equipos de cómputo de la marca DEF."
+        }
+        // ... puedes agregar más contratos aquí
+    ];
+    
+    let contenido = `
+        <div>
+            ${contratos.map(contrato => `
+                <div class="card">
+                    <h4 class="card-title">${contrato.fechaCreacion} - ${contrato.asunto}</h4>
+                    <p class="card-description"><strong>Descripción:</strong> ${contrato.descripcion}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    
+    Swal.fire({
+        title: "Contratos y Cartas Recientes",
+        html: contenido,
+        confirmButtonText: "Cerrar",
+        width: '600px',
+    });
+});
+
+  
   document.querySelector('.nav-transactions').addEventListener('click', function(event) {
     event.preventDefault();
     
@@ -627,13 +674,10 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
                         <a class="dropdown-item" href="#">
                             <i class="fas fa-users"></i> Socios o Amigos
                         </a>
+                        
                     </div>
                     </form>
                   </div>
-                  
-                       
-                  
-                  
                 </div>
               </div>
             
@@ -782,7 +826,9 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
                           <p>Descripción de Juan Pérez...</p>
                         </div>
                     </div>
-                </div>
+                </div><button onclick="hacerPregunta()" style="position: absolute; bottom: 10px; right: 10px;" class="btn btn-dark">
+                  <i class="fas fa-user-minus"></i>
+              </button> 
             </div>
         </div>
 
@@ -1080,6 +1126,7 @@ Yo: Nada en particular, ¿tú?
   </div>
 <!-- Aquí se mostrará la publicación -->
 <div class="col-md-9">
+
   <div class="d-flex flex-wrap justify-content-between mb-2">
   <!-- Imagen -->
         <div class="card1 rounded-lg" style="width: 6rem; background-color: white;">
@@ -1087,10 +1134,35 @@ Yo: Nada en particular, ¿tú?
             <div class="card-body">
                   <h6 class="card-title" style="color: #15566a; font-size: 0.6rem;">Título Imagen</h6>
         <p class="card-text" style="color: #15566a; font-size: 0.5rem;">Descripción de la imagen.</p>
-  
-            </div>
+            </div> 
+            <button  onclick="mostrarSwal()"  style="border-radius: 50%; position: relative;  bottom: 8px; right: 20px;" class="btn btn-outline-primary">
+              <i class="fas fa-plus"></i>
+          </button> 
         </div>
-
+        <script>
+          function mostrarSwal() {
+              Swal.fire({
+                  title: 'Crear Card',
+                  html: `
+                      <input type="file" id="fileInput" class="swal2-input" placeholder="Sube un archivo">
+                      <input type="text" id="linkInput" class="swal2-input" placeholder="Ingresa un enlace">
+                  `,
+                  confirmButtonText: 'Crear',
+                  focusConfirm: false,
+                  preConfirm: () => {
+                      const file = document.getElementById('fileInput').files[0];
+                      const link = document.getElementById('linkInput').value;
+                      return { file: file, link: link };
+                  }
+              }).then(result => {
+                  if (result.isConfirmed) {
+                      // Aquí puedes manejar los datos ingresados por el usuario
+                      console.log(result.value);
+                  }
+              });
+          }
+          </script>
+          
         <!-- Vídeo -->
         <div class="card1 rounded-lg" style="width: 6rem; background-color: white;">
             <video width="50" controls>
@@ -1160,7 +1232,10 @@ Yo: Nada en particular, ¿tú?
             <div class="card-body">
                 <h6 class="card-title" style="color: #15566a; font-size: 0.6rem;">Título Documento</h6>
                 <p class="card-text" style="color: #15566a; font-size: 0.5rem;">Descripción del documento.</p>
-            </div>
+               
+                
+              </div>
+            
         </div>
         
       <div class="card-body rounded-lg mt-2" style="background-color: white;">
@@ -1292,6 +1367,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <div class="col p-3 mt-2 col-md rounded-lg" style="background-color: #0463cb;">
+  <h2 class="pt-2 pb-2" style="color: white;">Almacenamiento <i class="fas fa-cloud ml-2"></i></h2>
+
   <div class="text-white p-3 rounded-lg" style="background-color: #ffffff54">
       <div class="col p-3 mb-3 col-md rounded-lg" style="background-color: white">
           <form action="#" method="GET" class="search-form">
@@ -1520,25 +1597,102 @@ h1,h2,h3,h4,h5,h6,p{
                 }
               }
             </script>
-                
-            <div class="text-white mt-3 p-3  rounded-lg" style="background-color: rgba(245, 245, 245, 0.313)">
-              <form action="verification" method="POST">
-              <div class="pb-2">
-                <h4 class="mb-2" style="color: black;">Validación digital</h4>
-              </div>
-            <h6 class="mb-4 fw-normal" style="color: black;">Ingresa el numero identificador:</h6>
-            <div class="mb-3 fw-normal">
-          
-            <input type="" name="tarjeta_chip" class="form-control" id="floatingInput" placeholder="XXXX-XXXX-XXXX-XXXX" length="16">
+       <div class="mt-3 p-3 rounded-lg" style="background-color: rgba(245, 245, 245, 0.313)">
+        <form action="" method="POST">
+            <div class="pb-2">
+                <h2 class="mb-2" style="color: black;">Validación digital</h2>
             </div>
-            <button type="submit" class="btn btn-secondary"><i class=" fas fa-search mr-2"></i>Validar</button>
-           <button type="submit" class="ml-2 btn btn-dark"><i class="mr-2 fas fa-qrcode"></i>Escanear</button>
-           <button type="submit" class="ml-2 btn btn-warning"><i class=" fas fa-exclamation-triangle"></i></button>                    
-          </form>   
-          </div>
+            <h6 class="mb-4 fw-normal" style="color: black;">Ingresa el número identificador:</h6>
+            <div class="mb-3 fw-normal">
+                <input type="text" name="tarjeta_chip" class="form-control" id="floatingInput" placeholder="XXXX-XXXX-XXXX-XXXX" maxlength="19">
+            </div>
+            <button type="" id="validarBtnn" class="btn btn-secondary"><i class="fas fa-search mr-2"></i>Validar</button>
+            <button type="button" id="escanearBtn" class="ml-2 btn btn-dark"><i class="mr-2 fas fa-qrcode"></i>Escanear</button>
+            <button type="button" id="alertaBtn" class="ml-2 btn btn-warning"><i class="fas fa-exclamation-triangle"></i></button>                    
+            <button type="button"  class="ml-2 btn btn-primary" id="firmaDigitalBtn"><i class="mr-2 fas fa-signature"></i>Firma Digital</button>
+            <button type="button"  class="ml-2 btn btn-info" id="crearDocumentoBtn"><i class="mr-2 fas fa-file-alt"></i>Crear Documento</button>
+        </form>   
+    </div>
+    
+<script>document.getElementById('validarBtnn').addEventListener('click', function() {
+  Swal.fire({
+      title: "Validación Exitosa",
+      text: "El documento ha sido validado correctamente.",
+      icon: "success",
+      confirmButtonText: "Cerrar"
+  });
+});
 
+document.getElementById('escanearBtn').addEventListener('click', function() {
+  Swal.fire({
+      title: "Escaneo Exitoso",
+      text: "El documento ha sido escaneado correctamente.",
+      icon: "success",
+      confirmButtonText: "Cerrar"
+  });
+});
+
+document.getElementById('alertaBtn').addEventListener('click', function() {
+  Swal.fire({
+      title: "Alerta",
+      text: "Se ha detectado una situación que requiere tu atención.",
+      icon: "warning",
+      confirmButtonText: "Cerrar"
+  });
+});
+
+document.getElementById('firmaDigitalBtn').addEventListener('click', function() {
+  Swal.fire({
+      title: "Firma Digital",
+      text: "Por favor, sube tu archivo de firma digital.",
+      icon: "info",
+      input: 'file',
+      inputAttributes: {
+          'accept': 'image/*',
+          'aria-label': 'Sube tu archivo de firma digital'
+      },
+      confirmButtonText: "Subir"
+  });
+});
+
+document.getElementById('crearDocumentoBtn').addEventListener('click', function() {
+  Swal.fire({
+      title: "Crear Documento",
+      input: 'text',
+      inputPlaceholder: "Escribe el nombre del documento",
+      showCancelButton: true,
+      confirmButtonText: "Crear",
+      cancelButtonText: "Cancelar",
+  }).then((result) => {
+      if (result.isConfirmed) {
+          Swal.fire({
+              title: "Documento Creado",
+              text: `Se ha creado el documento: ${result.value}`,
+              icon: "success"
+          });
+      }
+  });
+});
+</script>
           <div class="rounded-lg mt-3" style="background-color: white; padding: 20px; ">
             <h2 class="mb-3" style="color: #F17460;">Estadisticos  <i class="fas fa-chart-bar ml-2"></i></h2>
+            <button type="button" class="btn btn-success mb-3" id="generarGraficaBtn"><i class="fas fa-chart-bar mr-2"></i>Crear Gráfica</button>
+
+            <script>
+            document.getElementById('generarGraficaBtn').addEventListener('click', function() {
+                // Simulamos la obtención de la URL de la imagen desde el backend
+                var urlImagenFicticia = 'ruta/donde/almacenas/la/imagen/patentes_tecnologia.png';
+            
+                // Mostramos la gráfica en un pop-up usando Swal.fire
+                Swal.fire({
+                    title: 'Gráfica de Patentes por Área de Tecnología',
+                    imageUrl: urlImagenFicticia,
+                    imageWidth: 400,
+                    imageHeight: 300,
+                    imageAlt: 'Gráfica ficticia generada en Python',
+                });
+            });
+            </script>
             <form action="#" method="GET" class="mb-3">
               <div class="input-group">
                   <input type="text" class="form-control" placeholder="Buscar estadistica...">
@@ -1580,8 +1734,7 @@ h1,h2,h3,h4,h5,h6,p{
             </div>
            
           </div>
-          
-<script>
+          <script>
   function compartirGrafica(nombreGrafica) {
       Swal.fire({
           icon: 'success',
@@ -1589,26 +1742,27 @@ h1,h2,h3,h4,h5,h6,p{
           text: `Has compartido la ${nombreGrafica} exitosamente`,
           confirmButtonColor: '#3085d6',
           confirmButtonText: '¡Genial!'
-      });
-  }
 
   function quitarGrafica(nombreGrafica) {
-      Swal.fire({
+    Swal.fire({
           icon: 'info',
           title: 'Gráfica Quitada',
           text: `Has quitado la ${nombreGrafica} exitosamente`,
+          
           confirmButtonColor: '#3085d6',
           confirmButtonText: 'Entendido'
       });
   }
+      }
 </script>
           <div id="eventos" class="text-center rounded-lg mt-2 mb-2" style="background-color: #15566a">
             <div class="container mb-3 pb-1">
+              <h2 class="pt-3" style="color: white;">Eventos  <i class="fas fa-calendar ml-2"></i></h2>
               <div class="row">
-                <div class="col-md-6 mt-3">
-                  <div class="text-white mt-3 p-2 rounded-lg" style="background-color: #ffffff54">
+                <div class="col-md-6 mt-1">
+                  <div class="text-white mt-1 p-2 rounded-lg" style="background-color: #ffffff54">
                     <div class="list-group" id="lista-conversaciones" role="tablist">
-                      <h6>Próximos eventos <i class="fas fa-calendar-alt"></i></h5>
+                      <h6>Próximos eventos <i class="fas fa-calendar-alt ml-2"></i></h5>
                         <form action="#" method="GET" class="mb-3">
                           <div class="input-group">
                               <input type="text" class="form-control" placeholder="Buscar eventos...">
@@ -1878,7 +2032,7 @@ async function transferirFondos() {
         console.log("Usuario ingresado: ", humano); 
         console.log("Contraseña ingresada: ", password); 
         
-        if(humano === 'Hashkey' && password === 'human_xchange') {
+        if(humano === 'Hashkey' && password === 'Human.Xchange') {
           Swal.fire('Bienvenido', 'Has ingresado correctamente', 'success');
             document.getElementById('content').style.display = 'block'; // Muestra el elemento con id 'content'
        
