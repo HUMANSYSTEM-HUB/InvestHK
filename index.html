@@ -748,7 +748,7 @@ if (result.value.success) {
 <!-- Botón de LinkedIn -->
 <a href="https://www.linkedin.com/" style="color: #2c758c; font-size: 21px;"target="_blank" rel="noopener noreferrer"><i class="mr-2 fab fa-linkedin"></i></a>
 
-<a href="https://www.twitter.com/" style="color: #2c758c; font-size: 21px;"><i class="mr-2 fab fa-twitter"></i></a>
+<a href="https://www.twitter.com/" style="color: #2c758c; font-size: 21px;"><i class="mr-2 fas fa-times"></i></a>
 <a href="https://www.tiktok.com/" style="color: #2c758c; font-size: 21px;"><i class=" fab fa-tiktok"></i></a>
 
 </div>
@@ -789,19 +789,29 @@ if (result.value.success) {
               
             <!-- <% } %> -->
             </div>
-            <div id="contenidoDiv" style="display: none;">          
-            <div class="col p-3 mb-3 col-md text-white" style="background-color: #2c758c; border-radius: 30px; ">
-              <div class="text-white pt-2 rounded-lg" style="background-color: #ffffff54">
-                <div class="container text-center">
-                  <div class="pb-3">
-                    <form id="publicacionForm" enctype="multipart/form-data">
+           
+             <!-- Botón para abrir el formulario de publicación -->
+             <button id="btnPublicar" type="button" class="btn btn-success btn-fijo btn-icono" style="border-radius: 50%;"><i class="fas fa-pencil-alt"></i></button>
+
+<!-- Script para manejar la lógica del formulario de publicación -->
+<script>
+    document.getElementById('btnPublicar').addEventListener('click', function() {
+        Swal.fire({
+            title: 'Nueva Publicación',
+            html: `
+            <div id="publicacion1" style="">
+  <div class="col p-3 mb-3 col-md text-white" style="background-color: #2c758c; border-radius: 30px;">
+      <div class="text-white pt-2 rounded-lg" style="background-color: #ffffff54">
+          <div class="container text-center">
+              <div class="pb-3">
+                  <form id="publicacionForm" enctype="multipart/form-data">
                       <div class="form-group">
-                                                <label for="titulo"><h6>Título</h6></label>
-                        <input type="text" class="form-control" id="titulo" name="titulo" required>
+                          <label for="titulo"><h6>Título</h6></label>
+                          <input type="text" id="tituloPublicacion" class="form-control" name="titulo" required>
                       </div>
                       <div class="form-group">
-                        <label for="texto"><h6>Descripción</h6></label>
-                        <textarea class="form-control" id="texto" name="texto" rows="3"></textarea>
+                          <label for="texto"><h6>Descripción</h6></label>
+                          <textarea class="form-control" id="textoPublicacion" name="texto" rows="3"></textarea>
                       </div>
                       <label for="imagen" class="mt-2 mr-3"><i class="fas fa-image fa-lg text-white"></i></label>
                       <input type="file" class="form-control-file d-none" id="imagen" name="imagen">
@@ -809,40 +819,64 @@ if (result.value.success) {
                       <input type="file" class="form-control-file d-none" id="video" name="video">
                       <label for="archivo" class="mr-3"><i class="fas fa-file-alt fa-lg text-white"></i></label>
                       <input type="file" class="form-control-file d-none" id="archivo" name="archivo">
-                      <label for="imagen"><i class="fas fa-grin fa-lg text-white"></i></label>
-                      <label for="imagen"><i class="fas fa-poll ml-3 fa-lg text-white"></i></label>
-                      <label for="imagen"><i class="fas fa-volume-up ml-3"></i></label>
-                      <label for="imagen"><i class="fas fa-dollar-sign ml-3"></i></label>
+                      <!-- Corrected the 'for' attributes below -->
+                      <label for="emoji"><i class="fas fa-grin fa-lg text-white"></i></label>
+                      <label for="poll"><i class="fas fa-poll ml-3 fa-lg text-white"></i></label>
+                      <label for="volume"><i class="fas fa-volume-up ml-3"></i></label>
+                      <label for="dollar"><i class="fas fa-dollar-sign ml-3"></i></label>
                       <br>
                       <button type="submit" class="mt-2 btn btn-success"><i class="fas fa-upload mr-3"></i>Publicar</button>
-                      <button class=" mt-2  btn btn-secondary dropdown-toggle" type="button" id="menuDesplegable" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="menuDesplegable">
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-globe-americas"></i> Mundo
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-user-lock"></i> Persona con Candado
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-users"></i> Socios o Amigos
-                        </a>
-                        
-                    </div>
-                    </form>
-                  </div>
-                </div>
+                      <button class="mt-2 btn btn-secondary dropdown-toggle" type="button" id="menuDesplegable" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-eye"></i>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="menuDesplegable">
+                          <a class="dropdown-item" href="#">
+                              <i class="fas fa-globe-americas"></i> Mundo
+                          </a>
+                          <a class="dropdown-item" href="#">
+                              <i class="fas fa-user-lock"></i> Persona con Candado
+                          </a>
+                          <a class="dropdown-item" href="#">
+                              <i class="fas fa-users"></i> Socios o Amigos
+                          </a>
+                      </div>
+                  </form>
               </div>
-            
-            </div>
-               <script>document.getElementById('publicarNueva').addEventListener('click', function() {
-                Swal.fire({
-                    html: document.getElementById('contenidoDiv').innerHTML
-                });
+          </div>
+      </div>
+  </div>
+          </div>
+            `,
+            showCloseButton: true,
+            showConfirmButton: false,  // Desactiva el botón de confirmación
+            width: 'auto',             // Ajusta el ancho del modal según el contenido
+            customClass: {
+                content: 'p-0'         // Elimina el padding del contenido
+            }
+        });
+
+        // Agrega un evento al botón "Publicar" de tu formulario
+        document.querySelector('#publicacionForm button[type="submit"]').addEventListener('click', function(e) {
+            e.preventDefault();  // Evita que el formulario se envíe de la manera tradicional
+
+            const titulo = document.getElementById('tituloPublicacion').value;
+            const texto = document.getElementById('textoPublicacion').value;
+
+            if (!titulo || !texto) {
+                Swal.showValidationMessage('Por favor, completa ambos campos.');
+                return;
+            }
+
+            // Aquí puedes procesar la información del formulario, como enviarla a un servidor
+            Swal.fire({
+                icon: 'success',
+                title: 'Publicación realizada',
+                text: 'Tu publicación ha sido realizada con éxito.'
             });
-            </script>
-              </div>
+        });
+    });
+</script>
+      
       <!--       
             <div class="col col-md text-white p-2 mb-3 rounded-lg" style="background-color:  #fcc404">
   
@@ -2232,8 +2266,7 @@ document.getElementById('cryptoWalletButton').addEventListener('click', function
     </div>
                                           </div>
     <div id="publicacion" class="">
-      <button id="publicarNueva" type="button" class="btn btn-success btn-fijo btn-icono" style="border-radius: 50%;"><i class="fas fa-pencil-alt"></i></button>
-
+    
         </div>
     </div>    
       </div>
