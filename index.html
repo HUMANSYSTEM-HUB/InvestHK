@@ -957,40 +957,17 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
               </div>
             
         </div>                        <div class="card-body mt-3" style="background-color: white; border-radius: 15px;">
-            <select id="languageSelector">
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="ru">Русский</option>
-                <option value="cn">中文</option>
-                <option value="ar">العربية</option>
-            </select>
-            
-            <div id="welcomeMessage" style="color: #15566a;">Welcome to our website!</div>
-<script>const translations = {
-    en: {
-        welcome: "Welcome to our website!"
-    },
-    es: {
-        welcome: "¡Bienvenido a nuestro sitio web!"
-    },
-    ru: {
-        welcome: "Добро пожаловать на наш сайт!"
-    },
-    cn: {
-        welcome: "欢迎访问我们的网站！"
-    },
-    ar: {
-        welcome: "مرحبًا بك في موقعنا!"
-    }
-};
-
-document.getElementById('languageSelector').addEventListener('change', function() {
-    const selectedLang = this.value;
-    document.getElementById('welcomeMessage').innerText = translations[selectedLang].welcome;
-});
-</script>            
+           
 
                 <div class="" id="contenedorPublicaciones">
+                   <form action="#" method="GET" class="mb-3">
+                        <div class="input-group custom-search">
+                            <input type="text" style="border-radius: 30px; " class="form-control custom-input" placeholder="Buscar en publicaciones...">
+                            <div class="input-group-append custom-append">
+                                <button class="btn btn-outline-info custom-btn" style="border-radius: 30px; " type="submit"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                      </form>
                     <div align="left" class="text-white mb-2 p-3" style="background-color: whitesmoke; border-radius: 15px;">
                         <img alt="Logo" class="mt-1 rounded-lg" height="30" src="https://i.ibb.co/Nxkbn3C/Dise-o-sin-t-tulo-3.png" width="30"/>
                         <small class="text-muted">Humano: </small>
@@ -2340,9 +2317,41 @@ document.getElementById('languageSelector').addEventListener('change', function(
         <h5 style="color: black;">Compra de Human Coins</h2>
         <label for="cantidadCoins" style="color: black;">Cantidad de Human Coins:</label>
         <input type="number" id="cantidadCoins" name="cantidadCoins" min="1" max="100"><br><br>
+ <select id="languageSelector">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="ru">Русский</option>
+                <option value="cn">中文</option>
+                <option value="ar">العربية</option>
+            </select>
+            
+            <div id="welcomeMessage" style="color: #15566a;">Welcome to our website!</div>
+<script>const translations = {
+    en: {
+        welcome: "Welcome to our website!"
+    },
+    es: {
+        welcome: "¡Bienvenido a nuestro sitio web!"
+    },
+    ru: {
+        welcome: "Добро пожаловать на наш сайт!"
+    },
+    cn: {
+        welcome: "欢迎访问我们的网站！"
+    },
+    ar: {
+        welcome: "مرحبًا بك في موقعنا!"
+    }
+};
 
+document.getElementById('languageSelector').addEventListener('change', function() {
+    const selectedLang = this.value;
+    document.getElementById('welcomeMessage').innerText = translations[selectedLang].welcome;
+});
+</script>            
         <button class="btn btn-dark" id="guardarConfiguracion" style="border-radius: 30px;" type="submit"><i class="fas fa-save mr-2"></i>Guardar Configuración</button>
     </form>
+  
 </div>
 
     <div id="pricing-container" class="rounded-lg pt-2 mt-3">
