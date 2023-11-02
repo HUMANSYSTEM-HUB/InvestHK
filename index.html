@@ -166,7 +166,13 @@ h1, h2, h3, h4, h5, h6, p,
     justify-content: flex-start; /* Cambiado de 'center' a 'flex-start' */
     color: #ecf0f1;
 }
-
+#sidebar .navbar-nav .nav-item {
+    border-bottom: 2px solid #17a3b851; /* Línea azul entre botones */
+    padding-bottom: 10px; /* Espacio entre botones y la línea */
+}
+.sidebar button:last-child {
+  border-bottom: none; /* Elimina la línea en el último botón */
+}
 
         #sidebar .navbar-nav  {
             width: 100%;
@@ -242,7 +248,7 @@ h1, h2, h3, h4, h5, h6, p,
 
 <div class="d-none" id="horizontalMenu">
 
-<div class="search-container">
+<div class="search-container ">
 <div class="input-group custom-search">
 <input class="form-control custom-input" id="search-input" placeholder="Buscar . . ." style="border-radius: 30px;" type="text"/>
 <div class="input-group-append custom-append">
@@ -255,7 +261,7 @@ h1, h2, h3, h4, h5, h6, p,
 </div> 
 </div>
 <!-- Búsqueda -->
-<div class="search-container">
+<div class="search-container ml-3">
 <div class="input-group custom-search">
 <input class="form-control custom-input" id="search-input" placeholder="Buscar . . ." style="border-radius: 30px;" type="text"/>
 <div class="input-group-append custom-append">
@@ -571,8 +577,8 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
 
         // Generar el código QR usando la biblioteca 'qrcode.js'
         const qr = new QRCode(qrElement, {
-            text: idHumano,
             width: 128,
+            text: idHumano,
             height: 128,
         });
 
@@ -729,14 +735,16 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
             <!-- Información del Usuario -->
             <div class="col-md-3 d-flex justify-content-center">
                 <div class="col mb-3 p-3 col-md text-white text-center" style="background-color: white; border-radius: 25px; ">
-                    <img class="rounded-lg" src="https://i.ibb.co/Nxkbn3C/Dise-o-sin-t-tulo-3.png" width="110" height="110" alt="Logo">
+                    <img class="rounded-lg" src="https://i.ibb.co/2NZGdCh/1.png" width="200" height="200" >
                         <div>
                             <div align="" class=""><h4 style="color:#15566a">Nombre:</h4>
                                 <p style="color:red">Tu Nombre Completo <!-- <%= nombre %> --></p>
                                 <div><h6 style="color:#15566a">Humano:</h6><p style="color: red">ID Humano<!-- <%= curp %> --></p></div>
                                 <div class="mb-3 text-center" id="qrcode"></div>
                                 </div>
-                                <div align="left" id="descripcionActual">
+                                
+                      <div class="col col-md mt-2 pt-2 pl-2 text-white p-1" style="background-color: whitesmoke;border-radius: 25px;">
+                                <div align="left" id="descripcionActual" >
                                 <button class="btn btn-danger btn-sm" id="saveDescripcion" style="border-radius: 20%; padding: 3px; float: left; margin-right: 10px;" type="button"><i class="fas fa-user-edit"></i></button>
                                 <div style="display: inline-block;">
                                 <h6 class="mt-2" style="color: red;">Descripción:</h6>
@@ -845,6 +853,7 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
                                 <!-- <% } %> -->
                                 </div>
                                 </div>
+            </div>
             </div>
                 <div class="col-md-9"  id="InicioContenido">
                     <div class=" d-flex flex-wrap justify-content-between mb-2">
@@ -956,11 +965,9 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
                 
               </div>
             
-        </div>                        <div class="card-body mt-3" style="background-color: white; border-radius: 15px;">
-           
-
+        </div>                        <div class="card-body mt-3" style="background-color: white; border-radius: 15px;">   
                 <div class="" id="contenedorPublicaciones">
-                   <form action="#" method="GET" class="mb-3">
+                    <form action="#" method="GET" class="mb-3">
                         <div class="input-group custom-search">
                             <input type="text" style="border-radius: 30px; " class="form-control custom-input" placeholder="Buscar en publicaciones...">
                             <div class="input-group-append custom-append">
@@ -968,28 +975,23 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
                             </div>
                         </div>
                       </form>
-                    <div align="left" class="text-white mb-2 p-3" style="background-color: whitesmoke; border-radius: 15px;">
-                        <img alt="Logo" class="mt-1 rounded-lg" height="30" src="https://i.ibb.co/Nxkbn3C/Dise-o-sin-t-tulo-3.png" width="30"/>
-                        <small class="text-muted">Humano: </small>
-                        <h5 class="card-title mt-2" style="color: #15566a">${titulo}</h5>
-                        <p class="card-text" style="color: #15566a">${texto}</p>
-                        <small class="text-muted"><i class="fas fa-dollar-sign"></i> 50,490.00</small> <br/>
-                        <small class="text-muted"><i class="mr-1 fas fa-calendar-alt"></i>Fecha de publicación: ${publicacion.fecha}</small>
-                        <br/> <small class="text-muted"><i class="mr-1 fas fa-shield-alt"></i>Token: ${publicacion.token}</small>
-                        <div class="mt-2" style="color: #15566a"><i class="fas fa-heart"></i>  15.3M
-                                <i class="ml-1 fas fa-comment"></i> 1.2k
-                                <i class="ml-1 fas fa-share"></i> 360
-                                <i class="ml-1 fas fa-shopping-cart"></i> 1.5k
-                                <i class="ml-1 fas fa-exclamation-triangle"></i> 200</div>
+                      <div align="left" class="text-white mb-2 p-3" style="background-color: whitesmoke; border-radius: 15px;">
+                        <img alt="Logo" class="img-fluid rounded-circle " height="40" src="https://i.ibb.co/2NZGdCh/1.png" width="40"/>
+                        <small class="text-muted">Nombre del Humano</small>
+                        <h5 class="card-title mt-2" style="color: #15566a; border-right: 1px solid #ccc; padding-right: 10px;">Titulo de la publicación</h5>
+                        <p class="card-text" style="color: #15566a; border-right: 1px solid #ccc; padding-right: 10px;">Texto de la Publicacion</p>
+                        <small class="text-muted mr-2" style="border-right: 1px solid #ccc; padding-right: 10px;"><i class="mr-1 fas fa-calendar-alt"></i>Fecha de publicación: Fecha de Publicación</small>
+                        <small class="text-muted"><i class="mr-1 fas fa-shield-alt"></i>Token: Token</small>
+                       
                         <div class="contenedor-botones-publicacion">
-                        <button class="btn btn-sm btn-outline-danger" id="heartBtn" type="button"><i class="fas fa-heart"></i></button>
-                        <button class="btn btn-sm btn-outline-primary" id="commentBtn" type="button"><i class="fas fa-comment"></i></button>
-                        <button class="btn btn-sm btn-outline-warning" id="shareBtn" type="button"><i class="fas fa-share"></i></button>
-                        <button class="btn btn-outline-success" id="moneyBtn" type="button"><i class="fas fa-money-bill"></i></button>
-                        <button class="btn btn-sm btn-outline-dark" id="exclamationBtn" type="button"><i class="fas fa-exclamation-triangle"></i></button>
+                            <button class="btn btn-sm btn-outline-danger" id="heartBtn" type="button">200k <i class="fas fa-heart"></i></button>
+                            <button class="btn btn-sm btn-outline-primary" id="commentBtn" type="button">400 <i class="fas fa-comment"></i></button>
+                            <button class="btn btn-sm btn-outline-warning" id="shareBtn" type="button">15k <i class="fas fa-share"></i></button>
+                            <button class="btn btn-outline-success" id="moneyBtn" type="button">1k <i class="fas fa-money-bill"></i></button>
+                            <button class="btn btn-sm btn-outline-dark" id="exclamationBtn" type="button">10 <i class="fas fa-exclamation-triangle"></i></button>
                         </div>
-                        </div>
-                    <!-- Las publicaciones se insertarán aquí dinámicamente -->
+                    </div>
+                    <!-- aqui haz que cada i salga seprardo por una linea delgada horiontal  -->
                   </div>
                 </div>
             <button id="btnPublicar" type="button" class="btn btn-success btn-fijo btn-icono" style="border-radius: 50%;"><i class="fas fa-pencil-alt"></i></button>
@@ -1084,36 +1086,42 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
 
              
                 
-            <div id="perfil" class=" text-dark p-4 pb-3 mb-2" style="background-color: #ffffff; border-radius: 30px;">
-                <h3 class="mt-2 mb-3">Mi Perfil <i class="ml-1 fa fa-user"></i></h3>
-                
-                <!-- Formulario de edición de perfil -->
-                <form>
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Nuevo Nombre">
-                    </div>
-                    <div class="form-group">
-                        <label for="descripcion">Descripción</label>
-                        <input type="text" class="form-control" id="descripcion" placeholder="Nueva Descripción">
-                    </div>
-                    <div class="form-group">
-                        <label for="telefono">Teléfono</label>
-                        <input type="text" class="form-control" id="telefono" placeholder="Nuevo Teléfono">
-                    </div>
-                    <div class="form-group">
-                        <label for="correo">Correo</label>
-                        <input type="email" class="form-control" id="correo" placeholder="Nuevo Correo">
-                    </div>
-                    <div class="form-group">
-                        <label for="Domicilio">Domicilio</label>
-                        <input type="email" class="form-control" id="Domicilio" placeholder="Nuevo Domicilio">
-                    </div>
-                    <button type="button" class="btn btn-dark" onclick="guardarCambios()" style="border-radius: 30px;">
-                        <i class="fas fa-save"></i> Guardar Cambios
-                    </button>
-                </form>
+<div id="perfil" class=" text-dark p-4 pb-3 mb-2" style="background-color: #ffffff; border-radius: 30px;">
+    <h3 class="mt-2 mb-3">Mi Perfil <i class="ml-1 fa fa-user"></i></h3>
+    
+    <!-- Formulario de edición de perfil -->
+    <form>
+        <div class="form-group">
+            <img class="rounded-lg" src="https://i.ibb.co/2NZGdCh/1.png" width="150" height="150" alt="Logo"><br>
+                <i class="fas fa-camera"></i> <!-- Ícono de cámara -->
+                <label for="foto">Foto de Perfil</label>
+                <input type="file" class="form-control-file" id="foto">
             </div>
+            
+            <div class="form-group">
+                <i class="fas fa-phone"></i> <!-- Ícono de teléfono -->
+                <label for="telefono">Teléfono</label>
+                <input type="text" class="form-control" id="telefono" placeholder="Nuevo Teléfono">
+            </div>
+            
+            <div class="form-group">
+                <i class="fas fa-envelope"></i> <!-- Ícono de sobre -->
+                <label for="correo">Correo</label>
+                <input type="email" class="form-control" id="correo" placeholder="Nuevo Correo">
+            </div>
+            <div class="form-group">
+                <i class="fas fa-home"></i> <!-- Ícono de casa -->
+                <label for="Domicilio">Domicilio</label>
+                <input type="text" class="form-control" id="Domicilio" placeholder="Nuevo Domicilio">
+            </div>
+            
+       
+        <button type="button" class="btn btn-dark" onclick="guardarCambios()" style="border-radius: 30px;">
+            <i class="fas fa-save"></i> Guardar Cambios
+        </button>
+    </form>
+</div>
+
             <div id="AmigosContenido" class=" text-white p-2 pb-3 mb-2" style="background-color: #747c84; border-radius: 30px; ">
                 <h3 class="mt-2 mb-3" style="color:white"> Amigos <i class="ml-1 fa fa-users"></i></h3>
                                  <button class="btn btn-dark mb-2" id="addFriendBtn" style="border-radius: 30px; "><i class="fas fa-user-plus mr-2"></i>Agregar Amigo</button>
@@ -1138,327 +1146,331 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
                                       });
                                   });
                                   </script>
-                <form action="#" class="mb-3" method="GET">
-                <div class="input-group custom-search">
-                <input class="form-control custom-input" placeholder="Buscar amigo..." style="border-radius: 30px; " type="text"/>
-                <div class="input-group-append custom-append">
-                <button class="btn btn-dark custom-btn" style="border-radius: 30px; " type="submit"><i class="fas fa-search"></i></button>
-                </div>
-                </div>
-                </form>
-                <div class="row">
+                                  <button class="mb-2 btn btn-dark" id="createGroupButton" style="border-radius: 30px;">
+                                    <i class="fas fa-users"></i> Crear Grupo
+                                </button>
+                                
+                                <script>
+                                  document.getElementById('createGroupButton').addEventListener('click', function() {
+                                      Swal.fire({
+                                          title: 'Crear Grupo',
+                                          html: `
+                                              <input type="text" id="swal-input-group" class="swal2-input" placeholder="Título del Grupo...">
+                                              <input type="text" id="swal-input-friend" class="swal2-input" placeholder="Agregar Amigo...">
+                                              <ul id="swal-friend-list"></ul>
+                                              <textarea id="swal-input-description" class="swal2-textarea" placeholder="Descripción del Grupo..." style="display: none;"></textarea>
+                                          `,
+                                          focusConfirm: false,
+                                          preConfirm: () => {
+                                              const groupTitle = document.getElementById('swal-input-group').value;
+                                              const friend = document.getElementById('swal-input-friend').value;
+                                              const groupDescription = document.getElementById('swal-input-description').value;
+                                              if (!groupTitle || !friend || !groupDescription) {
+                                                  Swal.showValidationMessage('Por favor, completa todos los campos.');
+                                              }
+                                              return { groupTitle, friend, groupDescription };
+                                          },
+                                          onOpen: () => {
+                                              const inputElement = document.getElementById('swal-input-friend');
+                                              const listElement = document.getElementById('swal-friend-list');
+                                              inputElement.addEventListener('input', function() {
+                                                  const query = this.value.trim();
+                                                  const results = searchFriends(query);
+                                                  displaySearchResults(results, listElement, inputElement);
+                                              });
+                                          },
+                                          confirmButtonText: 'Crear Grupo',
+                                          cancelButtonText: 'Cancelar',
+                                          showCancelButton: true
+                                      }).then(result => {
+                                          if (result.isConfirmed) {
+                                              console.log(`Nuevo grupo: ${result.value.groupTitle}`);
+                                              console.log(`Amigo a agregar: ${result.value.friend}`);
+                                              console.log(`Descripción: ${result.value.groupDescription}`);
+                                              // Aquí puedes realizar acciones adicionales como enviar la información del grupo a tu servidor
+                                          }
+                                      });
+                                  });
+                                
+                                  function searchFriends(query) {
+                                      if (!query) return [];
+                                      return friends.filter(friend => friend.toLowerCase().includes(query.toLowerCase()));
+                                  }
+                                
+                                  function displaySearchResults(results, listElement, inputElement) {
+                                      listElement.innerHTML = '';
+                                      results.forEach(friend => {
+                                          const li = document.createElement('li');
+                                          li.textContent = friend;
+                                          li.style.cursor = 'pointer';
+                                          li.addEventListener('click', function() {
+                                              inputElement.value = friend;
+                                              document.getElementById('swal-input-description').style.display = 'block';
+                                              listElement.innerHTML = '';
+                                          });
+                                          listElement.appendChild(li);
+                                      });
+                                  }
+                                </script>
+                                                 <div class="row">
+                                  <div class="col-md-8 mt-3">
+                                    <div class="tab-content" id="contenido-amigos">
+                                        <div class="tab-pane fade show active" id="amigo1" role="tabpanel">
+                                            <img alt="Avatar 1" class="img-fluid rounded-circle mb-3" src="https://i.ibb.co/S7HB4g5/3.png" width="200" height="200"/>
+                                            <h5>Juan Pérez</h5>
+                                            <p>Descripción de Juan Pérez...</p>
+                                            </div>
+                                    <div class="tab-pane fade" id="amigo2" role="tabpanel">
+                                          
+                                    <img alt="Avatar 2" class="img-fluid rounded-circle mb-3" src="https://i.ibb.co/H2h9hNW/1.png" width="200" height="200"/>
+                                    <h5>María García</h5>
+                                    <p>Descripción de María García...</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="amigo3" role="tabpanel">
+                                    <img alt="Avatar 3" class="img-fluid rounded-circle mb-3" src="https://i.ibb.co/SyQ8JCY/2.png" width="200" height="200"/>
+                                    <h5>Carlos López</h5>
+                                    <p>Descripción de Carlos López...</p>
+                                    </div>
+                                    
+                                    <div class="tab-pane fade" id="amigo4" role="tabpanel">
+                                        <img alt="Avatar 1" class="img-fluid rounded-circle mb-3" src="https://i.ibb.co/S7HB4g5/3.png" width="200" height="200"/>
+                                        <h5>Juan Pérez</h5>
+                                        <p>Descripción de Juan Pérez...</p>
+                                        <img alt="Avatar 2" class="img-fluid rounded-circle mb-3" src="https://i.ibb.co/H2h9hNW/1.png" width="200" height="200"/>
+                                    <h5>María García</h5>
+                                    <p>Descripción de María García...</p>
+                                    <img alt="Avatar 3" class="img-fluid rounded-circle mb-3" src="https://i.ibb.co/SyQ8JCY/2.png" width="200" height="200"/>
+                                    <h5>Carlos López</h5>
+                                    <p>Descripción de Carlos López...</p>
+                                        </div>
+                                    </div><!-- Botón de Llamar -->
+                                    <button class="btn btn-primary m-2" onclick="hacerLlamada()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
+                                        <i class="fas fa-phone"></i> Llamar
+                                    </button>
+                                    
+                                    <!-- Botón de Videollamar -->
+                                    <button class="btn btn-success m-2" onclick="hacerVideollamada()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
+                                        <i class="fas fa-video"></i> Videollamar
+                                    </button>
+                                    
+                                    <!-- Botón de Enviar Mensaje -->
+                                    <button class="btn btn-info m-2" onclick="enviarMensaje()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
+                                        <i class="fas fa-envelope"></i> Enviar Mensaje
+                                    </button>
+                                    
+                                    <!-- Botón de Transferir -->
+                                    <button class="btn btn-warning m-2" onclick="transferir()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
+                                        <i class="fas fa-exchange-alt"></i> Transferir
+                                    </button>
+                                    <button class="btn btn-danger" onclick="hacerPregunta()" style="position: relative; bottom: 10px; right: 12px; border-radius: 30px;">
+                                        <i class="fas fa-user-minus"></i>
+                                    </button>
+                                    </div>
+                               
+                        
                 <div class="col-md-4">
-                <div class="list-group ml-2" id="lista-amigos" role="tablist">
-                <a class="list-group-item list-group-item-action active btn-dark" data-toggle="list" href="#amigo1" role="tab">Juan Pérez</a>
-                <a class="list-group-item list-group-item-action btn-dark" data-toggle="list" href="#amigo2" role="tab">María García</a>
-                <a class="list-group-item list-group-item-action btn-dark" data-toggle="list" href="#amigo3" role="tab">Carlos López</a>
-                </div>
-                </div>
-                <div class="col-md-8 mt-3">
-                <div class="tab-content" id="contenido-amigos">
-                <div class="tab-pane fade" id="amigo2" role="tabpanel">
-                <img alt="Avatar 2" class="img-fluid rounded-circle" src="avatar2.jpg"/>
-                <h5>María García</h5>
-                <p>Descripción de María García...</p>
-                </div>
-                <div class="tab-pane fade" id="amigo3" role="tabpanel">
-                <img alt="Avatar 3" class="img-fluid rounded-circle" src="avatar3.jpg"/>
-                <h5>Carlos López</h5>
-                <p>Descripción de Carlos López...</p>
-                </div>
-                <div class="tab-pane fade show active" id="amigo1" role="tabpanel">
-                <img alt="Avatar 1" class="img-fluid rounded-circle" src="avatar1.jpg"/>
-                <h5>Juan Pérez</h5>
-                <p>Descripción de Juan Pérez...</p>
-                </div>
-                </div><!-- Botón de Llamar -->
-                <button class="btn btn-primary m-2" onclick="hacerLlamada()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
-                    <i class="fas fa-phone"></i> Llamar
-                </button>
-                
-                <!-- Botón de Videollamar -->
-                <button class="btn btn-success m-2" onclick="hacerVideollamada()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
-                    <i class="fas fa-video"></i> Videollamar
-                </button>
-                
-                <!-- Botón de Enviar Mensaje -->
-                <button class="btn btn-info m-2" onclick="enviarMensaje()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
-                    <i class="fas fa-envelope"></i> Enviar Mensaje
-                </button>
-                
-                <!-- Botón de Transferir -->
-                <button class="btn btn-warning m-2" onclick="transferir()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
-                    <i class="fas fa-exchange-alt"></i> Transferir
-                </button>
-                <button class="btn btn-danger" onclick="hacerPregunta()" style="position: relative; bottom: 10px; right: 12px; border-radius: 30px;">
-                    <i class="fas fa-user-minus"></i>
-                </button>
-                </div>
-            
-                
-                </div>
-                
-        
-            </div>
-            
-
-
-        
-
-            <div id="perfil" class=" text-white p-2" style="background-color: #fcc404; border-radius: 30px; ">
-                <h3 class="mt-2" style="color:white;"> Mensajes <i class="ml-1 fa fa-envelope"></i></h3>
-                <button class="mb-3 btn btn-outline-light" id="sendMessageButton" style="border-radius: 30px; "><i class="fas fa-pencil-alt"></i>
-                                    Crear Mensaje </button>
-                <script>const friends = ["Ana", "Carlos", "Eduardo", "Fernanda", "Gabriela", "Héctor", "Iván", "Julia"];
-                
-                  document.getElementById('sendMessageButton').addEventListener('click', function() {
-                      Swal.fire({
-                          title: 'Enviar Mensaje',
-                          html: `
-                              <input type="text" id="swal-input-friend" class="swal2-input" placeholder="Buscar amigo...">
-                              <ul id="swal-friend-list"></ul>
-                              <textarea id="swal-input-message" class="swal2-textarea" placeholder="Escribe tu mensaje aquí..." style="display: none;"></textarea>
-                          `,
-                          focusConfirm: false,
-                          preConfirm: () => {
-                              const friend = document.getElementById('swal-input-friend').value;
-                              const message = document.getElementById('swal-input-message').value;
-                              if (!friend || !message) {
-                                  Swal.showValidationMessage('Por favor, selecciona un amigo y escribe un mensaje.');
-                              }
-                              return { friend, message };
-                          },
-                          onOpen: () => {
-                              const inputElement = document.getElementById('swal-input-friend');
-                              const listElement = document.getElementById('swal-friend-list');
-                              inputElement.addEventListener('input', function() {
-                                  const query = this.value.trim();
-                                  const results = searchFriends(query);
-                                  displaySearchResults(results, listElement, inputElement);
-                              });
-                          },
-                          confirmButtonText: 'Enviar',
-                          cancelButtonText: 'Cancelar',
-                          showCancelButton: true
-                      }).then(result => {
-                          if (result.isConfirmed) {
-                              // Aquí puedes enviar el mensaje a tu servidor o realizar otras acciones
-                              console.log(`Mensaje para ${result.value.friend}: ${result.value.message}`);
-                          }
-                      });
-                  });
-                  
-                  function searchFriends(query) {
-                      if (!query) return [];
-                      return friends.filter(friend => friend.toLowerCase().includes(query.toLowerCase()));
-                  }
-                  
-                  function displaySearchResults(results, listElement, inputElement) {
-                      listElement.innerHTML = '';
-                      results.forEach(friend => {
-                          const li = document.createElement('li');
-                          li.textContent = friend;
-                          li.style.cursor = 'pointer';
-                          li.addEventListener('click', function() {
-                              inputElement.value = friend;
-                              document.getElementById('swal-input-message').style.display = 'block';
-                              listElement.innerHTML = '';
-                          });
-                          listElement.appendChild(li);
-                      });
-                  }
-                </script>
-                <button class="mb-3 btn btn-outline-light" id="createGroupButton" style="border-radius: 30px;">
-                    <i class="fas fa-users"></i> Crear Grupo
-                </button>
-                
-                <script>
-                  document.getElementById('createGroupButton').addEventListener('click', function() {
-                      Swal.fire({
-                          title: 'Crear Grupo',
-                          html: `
-                              <input type="text" id="swal-input-group" class="swal2-input" placeholder="Título del Grupo...">
-                              <input type="text" id="swal-input-friend" class="swal2-input" placeholder="Agregar Amigo...">
-                              <ul id="swal-friend-list"></ul>
-                              <textarea id="swal-input-description" class="swal2-textarea" placeholder="Descripción del Grupo..." style="display: none;"></textarea>
-                          `,
-                          focusConfirm: false,
-                          preConfirm: () => {
-                              const groupTitle = document.getElementById('swal-input-group').value;
-                              const friend = document.getElementById('swal-input-friend').value;
-                              const groupDescription = document.getElementById('swal-input-description').value;
-                              if (!groupTitle || !friend || !groupDescription) {
-                                  Swal.showValidationMessage('Por favor, completa todos los campos.');
-                              }
-                              return { groupTitle, friend, groupDescription };
-                          },
-                          onOpen: () => {
-                              const inputElement = document.getElementById('swal-input-friend');
-                              const listElement = document.getElementById('swal-friend-list');
-                              inputElement.addEventListener('input', function() {
-                                  const query = this.value.trim();
-                                  const results = searchFriends(query);
-                                  displaySearchResults(results, listElement, inputElement);
-                              });
-                          },
-                          confirmButtonText: 'Crear Grupo',
-                          cancelButtonText: 'Cancelar',
-                          showCancelButton: true
-                      }).then(result => {
-                          if (result.isConfirmed) {
-                              console.log(`Nuevo grupo: ${result.value.groupTitle}`);
-                              console.log(`Amigo a agregar: ${result.value.friend}`);
-                              console.log(`Descripción: ${result.value.groupDescription}`);
-                              // Aquí puedes realizar acciones adicionales como enviar la información del grupo a tu servidor
-                          }
-                      });
-                  });
-                
-                  function searchFriends(query) {
-                      if (!query) return [];
-                      return friends.filter(friend => friend.toLowerCase().includes(query.toLowerCase()));
-                  }
-                
-                  function displaySearchResults(results, listElement, inputElement) {
-                      listElement.innerHTML = '';
-                      results.forEach(friend => {
-                          const li = document.createElement('li');
-                          li.textContent = friend;
-                          li.style.cursor = 'pointer';
-                          li.addEventListener('click', function() {
-                              inputElement.value = friend;
-                              document.getElementById('swal-input-description').style.display = 'block';
-                              listElement.innerHTML = '';
-                          });
-                          listElement.appendChild(li);
-                      });
-                  }
-                </script>
-                <form action="#" class="mb-3" method="GET">
-                <div class="input-group custom-search">
-                <input class="form-control custom-input" placeholder="Buscar en mensajes..." style="border-radius: 30px; " type="text"/>
-                <div class="input-group-append custom-append">
-                <button class="btn btn-outline-warning custom-btn" style="border-radius: 30px; " type="submit"><i class="fas fa-search"></i></button>
-                </div>
-                </div>
-                </form>
-                <div class="row">
-                <div class="col-md-4">
-                <div class="list-group ml-2" id="lista-conversaciones" role="tablist">
-                <a class="list-group-item list-group-item-action active btn-outline-light" data-toggle="list" href="#conversacion1" role="tab">
-                <img alt="" class="rounded-circle" src="ruta/al/avatar_claudia.jpg" style="width:30px;"/> Claudia
-                                        </a>
-                <a class="list-group-item list-group-item-action active btn-outline-light" data-toggle="list" href="#conversacion2" role="tab">
-                <img alt="" class="rounded-circle" src="ruta/al/avatar_claudia.jpg" style="width:30px;"/> Marcelo
-                                      </a>
-                <a class="list-group-item list-group-item-action active btn-outline-light" data-toggle="list" href="#conversacion3" role="tab">
-                <img alt="" class="rounded-circle" src="ruta/al/avatar_claudia.jpg" style="width:30px;"/> Claudia
-                                    </a>
-                </div>
-                </div>
-                <div class="col-md-8 ">
-                    <form action="#" class="chat-form" method="POST">
-                        <div class="input-group ">
-                        <input class="form-control" placeholder="Escribe..." type="text"/>
-                        <div class="input-group-append">
-                        <button class="btn btn-" style="color:#0463cb;" type="button">
-                        <i class="fas fa-paperclip"></i>
-                        </button>
-                        <button class="btn btn-warning" type="button">
-                        <i class="fas fa-smile"></i>
-                        </button>
-                        <button class="btn btn-outline-light" type="submit">
-                        <i class="mr-2 fas fa-paper-plane"></i>Enviar
-                                            </button>
+                <div class="list-group" id="lista-amigos" role="tablist">
+                    <form action="#" class="mb-3" method="GET">
+                        <div class="input-group custom-search">
+                        <input class="form-control custom-input" placeholder="Buscar amigo..." style="border-radius: 30px; " type="text"/>
+                        <div class="input-group-append custom-append">
+                        <button class="btn btn-dark custom-btn" style="border-radius: 30px; " type="submit"><i class="fas fa-search"></i></button>
                         </div>
                         </div>
                         </form>
-                <div class="tab-content" id="contenido-conversaciones">
+                <a class="list-group-item list-group-item-action active btn-dark" data-toggle="list" href="#amigo1" role="tab">  <img alt="Avatar 1" class="img-fluid rounded-circle mr-2" src="https://i.ibb.co/S7HB4g5/3.png" width="40" height="40"/>Juan Pérez</a>
+                <a class="list-group-item list-group-item-action btn-dark" data-toggle="list" href="#amigo2" role="tab"> <img alt="Avatar 2" class="img-fluid rounded-circle mr-2" src="https://i.ibb.co/H2h9hNW/1.png" width="40" height="40"/>María García</a>
+                <a class="list-group-item list-group-item-action btn-dark" data-toggle="list" href="#amigo3" role="tab">   <img alt="Avatar 3" class="img-fluid rounded-circle mr-2" src="https://i.ibb.co/SyQ8JCY/2.png" width="40" height="40"/>Carlos López</a>
+                <a class="list-group-item list-group-item-action btn-dark" data-toggle="list" href="#amigo4" role="tab">   <img alt="Avatar 3" class="img-fluid rounded-circle mr-2" src="https://i.ibb.co/SyQ8JCY/2.png" width="40" height="40"/><img alt="Avatar 2" class="img-fluid rounded-circle mr-2" src="https://i.ibb.co/H2h9hNW/1.png" width="40" height="40"/> <img alt="Avatar 1" class="img-fluid rounded-circle mr-2" src="https://i.ibb.co/S7HB4g5/3.png" width="40" height="40"/></a>   
+            </div>
+                </div>
+                
+            </div>
+                </div>
+                <div id="perfil" class="text-white pl-2 pr-2 pt-2 pb-4" style="background-color: #fcc404; border-radius: 30px;">
+                    <h3 class="mt-2" style="color:white;"> Mensajes <i class="ml-1 fa fa-envelope"></i></h3>
+                    <button class="mb-3 btn btn-outline-light" id="sendMessageButton" style="border-radius: 30px; "><i class="fas fa-pencil-alt"></i>
+                        Crear</button>
+    <script>const friends = ["Ana", "Carlos", "Eduardo", "Fernanda", "Gabriela", "Héctor", "Iván", "Julia"];
+
+    document.getElementById('sendMessageButton').addEventListener('click', function() {
+        Swal.fire({
+            title: 'Enviar Mensaje',
+            html: `
+                <input type="text" id="swal-input-friend" class="swal2-input" placeholder="Buscar amigo...">
+                <ul id="swal-friend-list"></ul>
+                <textarea id="swal-input-message" class="swal2-textarea" placeholder="Escribe tu mensaje aquí..." style="display: none;"></textarea>
+            `,
+            focusConfirm: false,
+            preConfirm: () => {
+                const friend = document.getElementById('swal-input-friend').value;
+                const message = document.getElementById('swal-input-message').value;
+                if (!friend || !message) {
+                    Swal.showValidationMessage('Por favor, selecciona un amigo y escribe un mensaje.');
+                }
+                return { friend, message };
+            },
+            onOpen: () => {
+                const inputElement = document.getElementById('swal-input-friend');
+                const listElement = document.getElementById('swal-friend-list');
+                inputElement.addEventListener('input', function() {
+                    const query = this.value.trim();
+                    const results = searchFriends(query);
+                    displaySearchResults(results, listElement, inputElement);
+                });
+            },
+            confirmButtonText: 'Enviar',
+            cancelButtonText: 'Cancelar',
+            showCancelButton: true
+        }).then(result => {
+            if (result.isConfirmed) {
+                // Aquí puedes enviar el mensaje a tu servidor o realizar otras acciones
+                console.log(`Mensaje para ${result.value.friend}: ${result.value.message}`);
+            }
+        });
+    });
+    
+    function searchFriends(query) {
+        if (!query) return [];
+        return friends.filter(friend => friend.toLowerCase().includes(query.toLowerCase()));
+    }
+    
+    function displaySearchResults(results, listElement, inputElement) {
+        listElement.innerHTML = '';
+        results.forEach(friend => {
+            const li = document.createElement('li');
+            li.textContent = friend;
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', function() {
+                inputElement.value = friend;
+                document.getElementById('swal-input-message').style.display = 'block';
+                listElement.innerHTML = '';
+            });
+            listElement.appendChild(li);
+        });
+    }
+    </script>
+
                     
-                <div class="tab-pane fade show active" id="conversacion1" role="tabpanel">
-                <div class="chat-container">
-                    
+                    <div class="row">
+                        <div class="col-md-8">
+                            <form action="#" class="chat-form" method="POST">
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="Escribe..." type="text"/>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-light" style="color:#0463cb;" type="button">
+                                            <i class="fas fa-paperclip"></i>
+                                        </button>
+                                        <button class="btn btn-outline-light" style="color:#0463cb;" type="button">
+                                            <i class="fas fa-smile"></i>
+                                        </button>
+                                        <button class="btn btn-outline-light" type="submit">
+                                            <i class="mr-2 fas fa-paper-plane"></i>Enviar
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+    <div class="tab-content" id="contenido-conversaciones">
+        <!-- Conversación 1 -->
+        <div class="tab-pane fade" id="conversacion1" role="tabpanel">
+            <div class="chat-container">
                 <div class="chat-message">
-                <div class="chat-message-content" style="color:white;">
-                                                  Claudia: Hola, ¿cómo estás? 
-                                                </div>
-                <div class="chat-message-time" style="color: white;">
-                                                 24/04/23 - 10:00 AM
-                                                </div>
-                </div>
-                <div class="chat-message">
-                <div class="chat-message-content" style="color:white;">
-                                                 Yo: Estoy bien, gracias por preguntar. ¿Y tú?
-                                                </div>
-                <div class="chat-message-time" style="color: white;">
-                                                  24/04/23 - 10:05 AM
-                                                </div>
-                </div>
-                </div>
-               
-                </div>
-                <div class="tab-pane fade" id="conversacion2" role="tabpane2">
-                <div class="chat-container">
-                <div class="chat-message">
-                <div class="chat-message-content" style="color:#0463cb;">
-                                                 Marcelo:
-                                                ¿Qué planes tienes para hoy?
-                                                </div>
-                <div class="chat-message-time" style="color:#0463cb;">
-                 12/02/30 - 5:43 PM
-                  </div>
+                    <div class="chat-message-content" style="color:white;">
+                        Claudia: Hola, ¿cómo estás? 
+                    </div>
+                    <div class="chat-message-time" style="color: white;">
+                        24/04/23 - 10:00 AM
+                    </div>
                 </div>
                 <div class="chat-message">
-                <div class="chat-message-content" style="color:#0463cb;">
-                Yo: Nada en particular, ¿tú?
-                  </div>
-                <div class="chat-message-time" style="color:#0463cb;">
-                    12/02/30 - 5:50 PM
-                  </div>
+                    <div class="chat-message-content" style="color:white;">
+                        Yo: Estoy bien, gracias por preguntar. ¿Y tú?
+                    </div>
+                    <div class="chat-message-time" style="color: white;">
+                        24/04/23 - 10:05 AM
+                    </div>
                 </div>
-                </div>
-                <form action="#" class="chat-form" method="POST">
-                <div class="input-group mt-2">
-                <input class="form-control" placeholder="Escribe..." type="text"/>
-                <div class="input-group-append">
-                <button class="btn btn-primary" type="submit"><i class="mr-2 fas fa-paper-plane"></i>Enviar</button>
-                </div>
-                </div>
-                </form>
-                </div>
-                <div class="tab-pane fade" id="conversacion3" role="tabpane3">
-                <div class="chat-container">
-                <div class="chat-message">
-                <div class="chat-message-content" style="color:#0463cb;">
-                  Adan: ¿Qué opinas de la película que vimos ayer?
-                  </div>
-                <div class="chat-message-time" style="color:#0463cb;">
-                  05/01/23 - 8:13 PM
-                  </div>
-                </div>
-                <div class="chat-message">
-                <div class="chat-message-content" style="color:#0463cb;">
-                  Yo: Me gustó bastante, ¿a ti?
-                  </div>
-                <div class="chat-message-time" style="color:#0463cb;">
-                    05/01/23 - 8:52 PM
-                  </div>
-                </div>
-                </div>
-                <form action="#" class="chat-form" method="POST">
-                <div class="input-group mt-2">
-                <input class="form-control" placeholder="Escribe..." type="text"/>
-                <div class="input-group-append">
-                <button class="btn btn-primary" type="submit"><i class="mr-2 fas fa-paper-plane"></i>Enviar</button>
-                </div>
-                </div></form>
-                </div>
-                </div>
-                </div>
-                </div>
-              
-              
+            </div>
         </div>
+        
+        <!-- Conversación 2 -->
+        <div class="tab-pane fade" id="conversacion2" role="tabpanel">
+            <div class="chat-container">
+                <div class="chat-message">
+                    <div class="chat-message-content" style="color:#0463cb;">
+                        Marcelo: ¿Qué planes tienes para hoy?
+                    </div>
+                    <div class="chat-message-time" style="color:#0463cb;">
+                        12/02/30 - 5:43 PM
+                    </div>
+                </div>
+                <div class="chat-message">
+                    <div class="chat-message-content" style="color:#0463cb;">
+                        Yo: Nada en particular, ¿tú?
+                    </div>
+                    <div class="chat-message-time" style="color:#0463cb;">
+                        12/02/30 - 5:50 PM
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Conversación 3 -->
+        <div class="tab-pane fade" id="conversacion3" role="tabpanel">
+            <div class="chat-container">
+                <div class="chat-message">
+                    <div class="chat-message-content" style="color:#0463cb;">
+                        Adan: ¿Qué opinas de la película que vimos ayer?
+                    </div>
+                    <div class="chat-message-time" style="color:#0463cb;">
+                        05/01/23 - 8:13 PM
+                    </div>
+                </div>
+                <div class="chat-message">
+                    <div class="chat-message-content" style="color:#0463cb;">
+                        Yo: Me gustó bastante, ¿a ti?
+                    </div>
+                    <div class="chat-message-time" style="color:#0463cb;">
+                        05/01/23 - 8:52 PM
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="col-md-4">
+    <div class="list-group" id="lista-conversaciones" role="tablist">
+        <form action="#" class="mb-3" method="GET">
+            <div class="input-group custom-search">
+                <input class="form-control custom-input" placeholder="Buscar en mensajes..." style="border-radius: 30px; " type="text"/>
+                <div class="input-group-append custom-append">
+                    <button class="btn btn-outline-warning custom-btn" style="border-radius: 30px; " type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        
+        <!-- Lista de amigos -->
+        <a class="list-group-item list-group-item-action btn-outline-light" data-toggle="list" href="#conversacion1" role="tab">
+            <img alt="" class="rounded-circle mr-2" src="https://i.ibb.co/nw6frZn/2.png" style="width:40px;"/> Claudia Miranda
+        </a>
+        <a class="list-group-item list-group-item-action btn-outline-light" data-toggle="list" href="#conversacion2" role="tab">
+            <img alt="" class="rounded-circle mr-2" src="https://i.ibb.co/BV3FH5L/4.png" style="width:40px;"/> Steven Garcia
+        </a>    
+        <a class="list-group-item list-group-item-action btn-outline-light" data-toggle="list" href="#conversacion3" role="tab">
+            <img alt="" class="rounded-circle mr-2" src="https://i.ibb.co/MDRRYBG/3.png" style="width:40px;"/> Juliana Main
+        </a>
+        <a class="list-group-item list-group-item-action btn-outline-light" data-toggle="list" href="#conversacion3" role="tab">
+            <img alt="" class="rounded-circle mr-2" src="https://i.ibb.co/nw6frZn/2.png" style="width:40px;"/> <img alt="" class="rounded-circle mr-2" src="https://i.ibb.co/BV3FH5L/4.png" style="width:40px;"/> <img alt="" class="rounded-circle mr-2" src="https://i.ibb.co/MDRRYBG/3.png" style="width:40px;"/> Amigos
+        </a>
+    </div>
+    </div>
+    </div>
+    </div>
+
+        
         <div class="col col-md mt-3 mb-3 text-white p-2" style="background-color: #f87d6a; border-radius: 30px; ">
             <div class="row">
                 <div class="col-md-6 mt-2 mb-3 text-white p-2">            
@@ -1595,118 +1607,117 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
             </div>
             </div>
                 </div>
-            <div class="col-md-6 ">
-            <h4 class="mt-4"><i class="mr-2 fas fa-exchange-alt"></i>Movimientos
-            </h4>
-            <div class="mt-3 p-4 rounded-lg" style="background-color: #ffffff54">
-            <form action="#" class="mb-2" method="GET">
-            <div class="input-group">
-            <input class="form-control" placeholder="Buscar movimientos..." type="text"/>
-            <div class="input-group-append">
-            <button class="btn btn-outline-warning" type="submit"><i class="fas fa-search"></i></button>
-            </div>
-            </div>
-            </form>
-            <div class="list-group" id="lista-conversaciones" role="tablist">
-            <a class="list-group-item list-group-item-action active btn-outline-warning" data-toggle="list" href="#ticket1" role="tab">
-                      Pago 1
-                      <p class="small mt-2">Descripción del Pago 1: Este es un pago relacionado con la membresía básica.</p>
-            </a>
-            <a class="list-group-item list-group-item-action btn-outline-warning" data-toggle="list" href="#ticket2" role="tab">
-                      Pago 2
-                      <p class="small mt-2">Descripción del Pago 2: Este es un pago por un servicio premium.</p>
-            </a>
-            <a class="list-group-item list-group-item-action btn-outline-warning" data-toggle="list" href="#ticket3" role="tab">
-                      Pago 3
-                      <p class="small mt-2">Descripción del Pago 3: Este es un pago por servicios adicionales.</p>
-            </a>
-            </div>
-            <div class="mb-1 mt-3">
-            <div class="tab-content" id="contenido-conversaciones">
-            <div class="tab-pane fade show active" id="ticket1" role="tabpanel">
-            <div class="chat-container">
-            <div class="chat-message">
-            <div class="chat-message-content" style="color:black;">
-                              Cuenta de origen: 123456789<br/>
-                              Cuenta de destino: 987654321<br/>
-                              Monto: $100<br/>
-                              Fecha: 27 de abril de 2023
-                            </div>
-            <div class="chat-message-time" style="color:black;">
-                             Hora: 10:00 AM
-                            </div>
-            </div>
-            <div class="chat-message">
-            <div class="chat-message-content" style="color:black;">
-                             Descripción: Agua
-                            </div>
-            <div class="qr-code-container">
-            <img alt="Código QR" src="ruta/al/codigoQR.png" style="width: 150px; height: 150px;"/>
-            </div>
-            </div>
-            </div>
-            </div>
-            <div class="tab-pane fade" id="ticket2" role="tabpanel">
-            <div class="chat-container">
-            <div class="chat-message">
-            <div class="chat-message-content" style="color:black;">
-                                    Cuenta de origen: 987654321<br/>
-                                    Cuenta de destino: 123456789<br/>
-                                    Monto: $50<br/>
-                                    Fecha: 27 de abril de 2023
+                <div class="col-md-6">
+                    <h4 class="mt-4"><i class="mr-2 fas fa-exchange-alt"></i>Movimientos</h4>
+                    <div class="mt-3 p-4 rounded-lg" style="background-color: #ffffff54">
+                        <!-- Contenido del ticket -->
+                        <div class="tab-content" id="contenido-conversaciones">
+                            <div class="tab-pane fade show active" id="ticket1" role="tabpanel">
+                                <div class="chat-container">
+                                    <div class="chat-message">
+                                        <div class="chat-message-content" style="color:black;">
+                                            Cuenta de origen: 123456789<br/>
+                                            Cuenta de destino: 987654321<br/>
+                                            Monto: $100<br/>
+                                            Fecha: 27 de abril de 2023
+                                        </div>
+                                        <div class="chat-message-time" style="color:black;">
+                                            Hora: 10:00 AM
+                                        </div>
+                                    </div>
+                                    <div class="chat-message">
+                                        <div class="chat-message-content" style="color:black;">
+                                            Descripción: Agua
+                                        </div>
+                                        <div class="qr-code-container">
+                                            <img alt="Código QR" src="ruta/al/codigoQR.png" style="width: 150px; height: 150px;"/>
+                                        </div>
+                                    </div>
                                 </div>
-            <div class="chat-message-time" style="color:black;">
-                                    2:00 PM
+                            </div>
+                
+                            <div class="tab-pane fade" id="ticket2" role="tabpanel">
+                                <div class="chat-container">
+                                    <div class="chat-message">
+                                        <div class="chat-message-content" style="color:black;">
+                                            Cuenta de origen: 987654321<br/>
+                                            Cuenta de destino: 123456789<br/>
+                                            Monto: $50<br/>
+                                            Fecha: 27 de abril de 2023
+                                        </div>
+                                        <div class="chat-message-time" style="color:black;">
+                                            2:00 PM
+                                        </div>
+                                    </div>
+                                    <div class="chat-message">
+                                        <div class="chat-message-content" style="color:black;">
+                                            Se ha recibido su pago correctamente.
+                                        </div>
+                                        <div class="chat-message-time" style="color:black;">
+                                            2:05 PM
+                                        </div>
+                                    </div>
+                                    <!-- Añadiendo el código QR al final -->
+                                    <div class="qr-code-container">
+                                        <img alt="Código QR" src="ruta/al/codigoQR.png" style="width: 150px; height: 150px;"/>
+                                    </div>
                                 </div>
-            </div>
-            <div class="chat-message">
-            <div class="chat-message-content" style="color:black;">
-                                    Se ha recibido su pago correctamente.
+                            </div>
+                
+                            <div class="tab-pane fade" id="ticket3" role="tabpanel">
+                                <div class="chat-container">
+                                    <div class="chat-message">
+                                        <div class="chat-message-content" style="color: black;">
+                                            Cuenta de origen: 111111111<br/>
+                                            Cuenta de destino: 222222222<br/>
+                                            Monto: $200<br/>
+                                            Fecha: 27 de abril de 2023
+                                        </div>
+                                        <div class="chat-message-time" style="color: black;">
+                                            8:00 PM
+                                        </div>
+                                    </div>
+                                    <div class="chat-message">
+                                        <div class="chat-message-content" style="color:black;">
+                                            Su pago ha sido acreditado en la cuenta destino.
+                                        </div>
+                                        <div class="chat-message-time" style="color:black;">
+                                            8:05 PM
+                                        </div>
+                                        <div class="qr-code-container">
+                                            <img alt="Código QR" src="ruta/al/codigoQR.png" style="width: 150px; height: 150px;"/>
+                                        </div>
+                                    </div>
                                 </div>
-            <div class="chat-message-time" style="color:black;">
-                                    2:05 PM
+                            </div>
+                        </div>
+                
+                        <!-- Barra de búsqueda y lista de movimientos -->
+                        <form action="#" class="mb-2 mt-3" method="GET">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="Buscar movimientos..." type="text"/>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-warning" type="submit"><i class="fas fa-search"></i></button>
                                 </div>
-            </div>
-            <!-- Añadiendo el código QR al final -->
-            <div class="qr-code-container">
-            <img alt="Código QR" src="ruta/al/codigoQR.png" style="width: 150px; height: 150px;"/>
-            </div>
-            </div>
-            </div>
-            <div class="tab-pane fade" id="ticket3" role="tabpanel">
-            <div class="chat-container">
-            <div class="chat-message">
-            <div class="chat-message-content" style="color: black;">
-                              Cuenta de origen: 111111111<br/>
-                              Cuenta de destino: 222222222<br/>
-                              Monto: $200<br/>
-                              Fecha: 27 de abril de 2023
                             </div>
-            <div class="chat-message-time" style="color: black;">
-                              8:00 PM
-                            </div>
-            </div>
-            <div class="chat-message">
-            <div class="chat-message-content" style="color:black;">
-                              Su pago ha sido acreditado en la cuenta destino.
-                            </div>
-            <div class="chat-message-time" style="color:black;">
-                              8:05 PM
-                            </div>
-            <div class="qr-code-container">
-            <img alt="Código QR" src="ruta/al/codigoQR.png" style="width: 150px; height: 150px;"/>
-            </div>
-            
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-
+                        </form>
+                        <div class="list-group" id="lista-conversaciones" role="tablist">
+                            <a class="list-group-item list-group-item-action active btn-outline-warning" data-toggle="list" href="#ticket1" role="tab">
+                                Pago 1
+                                <p class="small mt-2">Descripción del Pago 1: Este es un pago relacionado con la membresía básica.</p>
+                            </a>
+                            <a class="list-group-item list-group-item-action btn-outline-warning" data-toggle="list" href="#ticket2" role="tab">
+                                Pago 2
+                                <p class="small mt-2">Descripción del Pago 2: Este es un pago por un servicio premium.</p>
+                            </a>
+                            <a class="list-group-item list-group-item-action btn-outline-warning" data-toggle="list" href="#ticket3" role="tab">
+                                Pago 3
+                                <p class="small mt-2">Descripción del Pago 3: Este es un pago por servicios adicionales.</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div></div>                
 
                     <div class="col p-3 mt-2 col-md" style="background-color: #0463cb; border-radius: 30px;">
     <h3 class="pt-2 pb-2" style="color: white;">Almacenamiento <i class="fas fa-cloud ml-2"></i></h3>
@@ -2317,41 +2328,9 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
         <h5 style="color: black;">Compra de Human Coins</h2>
         <label for="cantidadCoins" style="color: black;">Cantidad de Human Coins:</label>
         <input type="number" id="cantidadCoins" name="cantidadCoins" min="1" max="100"><br><br>
- <select id="languageSelector">
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="ru">Русский</option>
-                <option value="cn">中文</option>
-                <option value="ar">العربية</option>
-            </select>
-            
-            <div id="welcomeMessage" style="color: #15566a;">Welcome to our website!</div>
-<script>const translations = {
-    en: {
-        welcome: "Welcome to our website!"
-    },
-    es: {
-        welcome: "¡Bienvenido a nuestro sitio web!"
-    },
-    ru: {
-        welcome: "Добро пожаловать на наш сайт!"
-    },
-    cn: {
-        welcome: "欢迎访问我们的网站！"
-    },
-    ar: {
-        welcome: "مرحبًا بك في موقعنا!"
-    }
-};
 
-document.getElementById('languageSelector').addEventListener('change', function() {
-    const selectedLang = this.value;
-    document.getElementById('welcomeMessage').innerText = translations[selectedLang].welcome;
-});
-</script>            
         <button class="btn btn-dark" id="guardarConfiguracion" style="border-radius: 30px;" type="submit"><i class="fas fa-save mr-2"></i>Guardar Configuración</button>
     </form>
-  
 </div>
 
     <div id="pricing-container" class="rounded-lg pt-2 mt-3">
