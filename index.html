@@ -187,6 +187,33 @@ h1, h2, h3, h4, h5, h6, p,
     color: #2c758c;
     text-decoration: underline; /* Decoración cuando se pasa el ratón */;
 }
+.card.chat-card {
+    position: relative;
+    max-width: 75%;
+    margin-bottom: 10px;
+}
+
+.arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.arrow.top {
+    border-width: 10px 10px 0;
+    border-color: #ffffff transparent transparent transparent;
+    bottom: -10px;
+    left: calc(50% - 10px);
+}
+
+.arrow.bottom {
+    border-width: 0 10px 10px;
+    border-color: transparent transparent #ffffff transparent;
+    top: -10px;
+    left: calc(50% - 10px);
+}
+
 </style>
 <script>
     $(document).ready(function() {
@@ -1243,26 +1270,27 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
                                     <h5>Carlos López</h5>
                                     <p>Descripción de Carlos López...</p>
                                         </div>
-                                    </div><!-- Botón de Llamar -->
-                                    <button class="btn btn-primary m-2" onclick="hacerLlamada()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
-                                        <i class="fas fa-phone"></i> Llamar
+                                    </div>
+                                    <br><!-- Botón de Llamar -->
+                                    <button class="btn btn-primary ml-2" onclick="hacerLlamada()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
+                                        <i class="fas fa-phone"></i>
                                     </button>
                                     
                                     <!-- Botón de Videollamar -->
-                                    <button class="btn btn-success m-2" onclick="hacerVideollamada()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
-                                        <i class="fas fa-video"></i> Videollamar
+                                    <button class="btn btn-success ml-2" onclick="hacerVideollamada()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
+                                        <i class="fas fa-video"></i> 
                                     </button>
                                     
                                     <!-- Botón de Enviar Mensaje -->
-                                    <button class="btn btn-info m-2" onclick="enviarMensaje()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
-                                        <i class="fas fa-envelope"></i> Enviar Mensaje
+                                    <button class="btn btn-info ml-2" onclick="enviarMensaje()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
+                                        <i class="fas fa-envelope"></i> 
                                     </button>
                                     
                                     <!-- Botón de Transferir -->
-                                    <button class="btn btn-warning m-2" onclick="transferir()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
-                                        <i class="fas fa-exchange-alt"></i> Transferir
+                                    <button class="btn btn-warning ml-2" onclick="transferir()" style="position: relative; bottom: 10px; right: 10px; border-radius: 30px;">
+                                        <i class="fas fa-exchange-alt"></i>
                                     </button>
-                                    <button class="btn btn-danger" onclick="hacerPregunta()" style="position: relative; bottom: 10px; right: 12px; border-radius: 30px;">
+                                    <button class="btn btn-danger ml-2" onclick="hacerPregunta()" style="position: relative; bottom: 10px; right: 12px; border-radius: 30px;">
                                         <i class="fas fa-user-minus"></i>
                                     </button>
                                     </div>
@@ -1370,25 +1398,24 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
                                     </div>
                                 </div>
                             </form>
-    <div class="tab-content" id="contenido-conversaciones">
+    <div class="tab-content mt-3 pt-3 pb-3" id="contenido-conversaciones" style="background-color: rgba(255, 255, 255, 0.289)  ; border-radius: 20px;">
         <!-- Conversación 1 -->
         <div class="tab-pane fade" id="conversacion1" role="tabpanel">
             <div class="chat-container">
                 <div class="chat-message">
-                    <div class="chat-message-content" style="color:white;">
+                       <div class="chat-message-content" style="color: black;">
+                        <img alt="Logo" class="img-fluid rounded-circle " height="40" src="https://i.ibb.co/nw6frZn/2.png" width="40"/>
                         Claudia: Hola, ¿cómo estás? 
+                       <br> <small>24/04/23 - 10:00 AM </small>   
                     </div>
-                    <div class="chat-message-time" style="color: white;">
-                        24/04/23 - 10:00 AM
-                    </div>
+                    
                 </div>
                 <div class="chat-message">
-                    <div class="chat-message-content" style="color:white;">
-                        Yo: Estoy bien, gracias por preguntar. ¿Y tú?
+                     <div class="chat-message-content" style="color:black;">
+                       Yo: Estoy bien, gracias por preguntar. ¿Y tú?     <img alt="Logo" class="img-fluid rounded-circle " height="40" src="https://i.ibb.co/2NZGdCh/1.png" width="40"/>
+                      <br> <small> 24/04/23 - 10:05 AM</small> 
                     </div>
-                    <div class="chat-message-time" style="color: white;">
-                        24/04/23 - 10:05 AM
-                    </div>
+                
                 </div>
             </div>
         </div>
@@ -1397,20 +1424,22 @@ document.querySelector('.nav-documents').addEventListener('click', function(even
         <div class="tab-pane fade" id="conversacion2" role="tabpanel">
             <div class="chat-container">
                 <div class="chat-message">
-                    <div class="chat-message-content" style="color:#0463cb;">
-                        Marcelo: ¿Qué planes tienes para hoy?
+                    
+                    <div class="chat-message-content" style="color:black;">
+                        <img alt="Logo" class="img-fluid rounded-circle " height="40" src="https://i.ibb.co/BV3FH5L/4.png" width="40"/> Steven: ¿Qué planes tienes para hoy?  
+                       <br> <small> 12/02/30 - 5:43 PM</small>
+
                     </div>
-                    <div class="chat-message-time" style="color:#0463cb;">
-                        12/02/30 - 5:43 PM
-                    </div>
+                  
                 </div>
                 <div class="chat-message">
-                    <div class="chat-message-content" style="color:#0463cb;">
-                        Yo: Nada en particular, ¿tú?
-                    </div>
-                    <div class="chat-message-time" style="color:#0463cb;">
-                        12/02/30 - 5:50 PM
-                    </div>
+                    
+                    <div class="chat-message-content" style="color: black;">
+                                  Yo: Nada en particular, ¿tú?  <img alt="Logo" class="img-fluid rounded-circle " height="40" src="https://i.ibb.co/2NZGdCh/1.png" width="40"/>
+                    <br>
+                <small> 12/02/30 - 5:50 PM</small>
+                                </div>
+                  
                 </div>
             </div>
         </div>
